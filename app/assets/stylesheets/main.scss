@@ -288,7 +288,7 @@ aside {
 
 .aside-list > .done::after {
 	content: '';
-	background-image: url('/assets/check.svg');
+	background-image: url('/a/check.svg');
 	width: 20px;
 	height: 20px;
 	margin: -2px 0px;
@@ -338,7 +338,7 @@ main {
 .fullscreen > #close-fs {
 	display: block;
 	content: '';
-	background-image: url('/assets/close.svg');
+	background-image: url('/a/close.svg');
 	position: fixed;
 	top: 22px;
     right: 30px;
