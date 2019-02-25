@@ -1,0 +1,145 @@
+<div class="main-container">
+		<aside>
+			<div class="aside-header">
+				<h4>Übersicht</h4>
+				<span>Dauer: 15min</span>				
+				<svg width="22px" height="12px" class="aside-handler" id="aside-handler" viewBox="0 0 22 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<g stroke="none" stroke-width="2" fill="none" fill-rule="evenodd">
+						<g transform="translate(-287.000000, -109.000000)" stroke="#3B3B3B">
+							<path d="M287,110 C287,110 290.614778,113.279192 297.844335,119.837577 L308.688671,110" ></path>
+						</g>
+					</g>
+				</svg>
+				<script>
+					$('.aside-header').on('click', function(){
+						$('.aside-body').slideToggle();
+						$('#aside-handler').toggleClass('clicked');
+						
+					})
+				</script>
+			</div>
+			<div class="aside-body">
+				<ul class="aside-list">
+					<li class="active">Willkommen</li>
+					<li>Schritt 1: YooYuu kennenlernen</li>
+					<li>Schritt 2: Aufbau der App</li>
+					<li>Schritt 3: Weitere Funktionen</li>
+					<li>Schritt 4: Orga-App & Web-App</li>
+					<li>Schritt 5: Kategorien & Gruppen</li>
+					<li>Schritt 6: Nutzer anlegen</li>
+					<li>Schritt 7: Handy verloren, etc.</li>
+				</ul>
+				<a href="/assets/yooyuu-bedienungsanleitung.pdf" target="_blank" class="btn secondary">PDF-Bedienungsanleitung</a>
+			</div>
+		</aside>
+		<main>
+			<div class="article-img">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 25 25" id="close-fs">
+				  <g fill="none" fill-rule="evenodd" stroke="#FFF" stroke-linecap="round" stroke-width="2" transform="translate(1 1)">
+					<path d="M0.522727273,0.522727273 L22.4772727,22.4772727"/>
+					<path d="M0.522727273,0.522727273 L22.4772727,22.4772727" transform="matrix(-1 0 0 1 23 0)"/>
+				  </g>
+				</svg>
+				<img src="/assets/willkommen.jpg" alt="Willkommen" width="100%">
+			</div>
+			<script>
+				$('.article-img > img').on('click', function(){
+					$('.article-img').toggleClass('fullscreen');
+				})
+				
+				$('#close-fs').on('click', function(){
+					$('.article-img').toggleClass('fullscreen');
+				})
+				
+			</script>
+			<article>
+				<h1>Willkommen bei YooYuu</h1>
+				<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
+          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. 
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+          At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+				<form action="post" id="testdaten" async>
+					<button class="btn" id="testdaten-btn">Test-Daten anfordern</button>
+					<div class="modal-container">
+						<div class="modal" id="modal1">
+							<h4>Geben Sie bitte Ihren Organisationnamen ein.</h4>
+							<input type="text" value="" name="org" id="org" style="margin-bottom: 20px">
+							<input type="submit" class="btn" id="testdaten-submit" value="Absenden">
+						</div>
+						<div class="modal" id="modal2" style="display: none;">
+							<h4>Ihre Anfrage wurde erfolgreich verschickt</h4>
+							<p>Da Testdaten nur in leere Organisationen eingesetzt werden können, bitten wir Sie keine Änderungen vorzunehmen bevor Sie eine Email von uns erhalten haben. Derweil können Sie gerne das Tutorial durchgehen.</p>
+							<button class="btn tutorial-beginnen">Tour beginnen</button>
+						</div>
+					</div>
+				</form>
+				<script>
+					var thisurl = new URL(document.location.href);
+					var org = thisurl.searchParams.get("org");
+					
+					$('#org').val(org);
+					
+					$.cookie("org", $('#org').val(), { expires : 10 });
+					
+					$('#testdaten-btn').on('click', function(event){
+						event.preventDefault();
+						
+						if($('#org').val()){
+							$('#testdaten').submit();
+						} else {
+							$('.modal-container').toggleClass('open');
+							$('#org').focus();
+						}
+					})
+					
+					$('#testdaten').on('submit', function(event){
+						event.preventDefault();
+						if($('#org').val()){
+							$.ajax({
+							  type: 'POST',
+							  url: '/testdaten',
+							  data: $("#testdaten").serialize(),
+							  success: function(){
+							  	$.cookie("org", $('#org').val(), { expires : 10 });
+								  if($('.modal-container').hasClass('open')){
+									  
+								  } else {
+									  $('.modal-container').toggleClass('open');
+								  }
+								$('#modal1').hide();
+								$('#modal2').show();
+							  },
+							  error: function(){
+								  alert('Es ist ein Fehler aufgetretten! Bitte aktualisieren Sie die Seite und versuchen Sie es erneut.');
+							  }	
+							});
+						} else {
+							alert('Keine Organisation ausgewählt. Wählen Sie bitte erneut um den Vorgang zu beenden');
+						}
+						
+					})
+				</script>
+			</article>
+		</main>
+	</div>
+	<footer>
+		<a href="/assets/yooyuu-bedienungsanleitung.pdf" target="_blank" class="btn secondary hidden-mobile">PDF-Bedienungsanleitung</a>
+		<button class="btn tour-beginnen">Tour beginnen</button>
+	</footer>
+	<script>
+		$('.tour-beginnen').on('click', function(event){
+			event.preventDefault();
+			$('.open').toggleClass('open');
+			// $.ajax({
+			//	type: 'POST',
+			// 	url: '/tour-beginnen',
+			//	data: $("#testdaten").serialize(),
+,			//	success: function(){
+			//				alert('Es ist ein Fehler aufgetretten! Bitte aktualisieren Sie die Seite und versuchen Sie es erneut.');
+			//			 },
+			//	error: function(){
+			//				alert('Es ist ein Fehler aufgetretten! Bitte aktualisieren Sie die Seite und versuchen Sie es erneut.');
+			//		   }
+			});
+		});
+	</script>
