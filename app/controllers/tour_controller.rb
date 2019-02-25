@@ -12,6 +12,10 @@ class TourController < ApplicationController
     TestdatenMailer.with(org: params[:org]).testdaten.deliver_now
   end
   
+  def step
+      
+  end
+  
   def overview
     
   end
