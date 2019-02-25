@@ -22,6 +22,10 @@ test:
 
 production:
   adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
-  database: db/production.postgresql
+  database: d9acspn966r315
+  username: awqpeqqgephpgb
+  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
