@@ -44,7 +44,7 @@ class TourController < ApplicationController
       if record != nil
         tour.name = record[:name]
         tour.description = record[:description]
-        tour.image_url = record[:image_url]
+        tour.image_url = record[:image].first.url
         tour.save!
       end
     end
@@ -59,11 +59,11 @@ class TourController < ApplicationController
         step.type = record[:type]
         step.video_url = record[:video_url]
         step.est_time = record[:est_time]
-        step.image_url = record[:image_url]
+        step.image_url = record[:image].first.url
         step.save!
       end
     end
-      
+    
     #@stepcount = @step_table.all(:sort => ["step_id", :desc]).first[:step_id]
     #@tourcount = @tour_table.all(:sort => ["tour_id", :desc]).first[:tour_id]
     
