@@ -41,23 +41,27 @@ class TourController < ApplicationController
     
     Tour.all.each do |tour|
       record = @tour_table.select(formula: "tour_id = #{tour.id}").first
-      tour.name = record[:name]
-      tour.description = record[:description]
-      tour.image_url = record[:image_url]
-      tour.save!
+      if record
+        tour.name = record[:name]
+        tour.description = record[:description]
+        tour.image_url = record[:image_url]
+        tour.save!
+      end
     end
     
     Step.all.each do |step|
       record = @step_table.select(formula: "step_id = #{step.id}").first
-      step.step = record[:step]
-      step.tour_id = record[:tour_id].first
-      step.head = record[:head]
-      step.body = record[:body]
-      step.type = record[:type]
-      step.video_url = record[:video_url]
-      step.est_time = record[:est_time]
-      step.image_url = record[:image_url]
-      step.save!
+      if record
+        step.step = record[:step]
+        step.tour_id = record[:tour_id].first
+        step.head = record[:head]
+        step.body = record[:body]
+        step.type = record[:type]
+        step.video_url = record[:video_url]
+        step.est_time = record[:est_time]
+        step.image_url = record[:image_url]
+        step.save!
+      end
     end
       
     #@stepcount = @step_table.all(:sort => ["step_id", :desc]).first[:step_id]
