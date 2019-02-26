@@ -65,7 +65,7 @@
 						<div class="modal" id="modal2" style="display: none;">
 							<h4>Ihre Anfrage wurde erfolgreich verschickt</h4>
 							<p>Da Testdaten nur in leere Organisationen eingesetzt werden können, bitten wir Sie keine Änderungen vorzunehmen bevor Sie eine Email von uns erhalten haben. Derweil können Sie gerne das Tutorial durchgehen.</p>
-							<button class="btn tutorial-beginnen">Tour beginnen</button>
+							<a href="/tour/Organizator%20Erste%20Schritte/1" class="btn">Tour beginnen</a>
 						</div>
 					</div>
 				</form>
@@ -121,22 +121,5 @@
 	</div>
 	<footer>
 		<a href="/a/yooyuu-bedienungsanleitung.pdf" target="_blank" class="btn secondary hidden-mobile">PDF-Bedienungsanleitung</a>
-		<button class="btn tour-beginnen">Tour beginnen</button>
+		<a href="/tour/Organizator%20Erste%20Schritte/1" class="btn">Tour beginnen</a>
 	</footer>
-	<script>
-		$('.tour-beginnen').on('click', function(event){
-			event.preventDefault();
-			$('.open').toggleClass('open');
-			// $.ajax({
-			//	type: 'POST',
-			// 	url: '/tour-beginnen',
-			//	data: $("#testdaten").serialize(),
-,			//	success: function(){
-			//				alert('Es ist ein Fehler aufgetretten! Bitte aktualisieren Sie die Seite und versuchen Sie es erneut.');
-			//			 },
-			//	error: function(){
-			//				alert('Es ist ein Fehler aufgetretten! Bitte aktualisieren Sie die Seite und versuchen Sie es erneut.');
-			//		   }
-			});
-		});
-	</script>

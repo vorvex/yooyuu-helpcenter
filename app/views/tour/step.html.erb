@@ -1,0 +1,68 @@
+<div class="main-container">
+		<aside>
+			<div class="aside-header">
+				<h4>Übersicht</h4>
+				<span><%= @time_done %>/<%= @tour.est_time %>min</span>				
+				<svg width="22px" height="12px" class="aside-handler" id="aside-handler" viewBox="0 0 22 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<g stroke="none" stroke-width="2" fill="none" fill-rule="evenodd">
+						<g transform="translate(-287.000000, -109.000000)" stroke="#3B3B3B">
+							<path d="M287,110 C287,110 290.614778,113.279192 297.844335,119.837577 L308.688671,110" ></path>
+						</g>
+					</g>
+				</svg>
+				<script>
+					$('.aside-header').on('click', function(){
+						$('.aside-body').slideToggle();
+						$('#aside-handler').toggleClass('clicked');
+						
+					})
+				</script>
+			</div>
+			<div class="aside-body">
+				<ul class="aside-list">
+					<li>Willkommen</li>
+          <% @tour.steps.each do |step| %>
+					<li <% if step == @step %>class="active"<% elsif step.step < @step.step %>class="done"<% end %>>Schritt <%= step.step %>: <%= step.head %></li>
+          <% end %>
+				</ul>
+        <% unless @step.step == 1 %>
+        <a href="/tour/<%= @tour.name %>/<%= @step.step - 1 %>" class="btn secondary hidden-mobile">Vorheriger Schritt</a>
+        <% end %>
+			</div>
+		</aside>
+		<main>
+			<div class="article-img">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 25 25" id="close-fs">
+				  <g fill="none" fill-rule="evenodd" stroke="#FFF" stroke-linecap="round" stroke-width="2" transform="translate(1 1)">
+					<path d="M0.522727273,0.522727273 L22.4772727,22.4772727"/>
+					<path d="M0.522727273,0.522727273 L22.4772727,22.4772727" transform="matrix(-1 0 0 1 23 0)"/>
+				  </g>
+				</svg>
+				<img src="<%= @step.image_url %>" alt="" width="100%">
+			</div>
+			<script>
+				$('.article-img > img').on('click', function(){
+					$('.article-img').toggleClass('fullscreen');
+				})
+				
+				$('#close-fs').on('click', function(){
+					$('.article-img').toggleClass('fullscreen');
+				})
+				
+			</script>
+			<article>
+				<h1><%= @step.head %></h1>
+				<p><%= @step.body %></p>
+			</article>
+		</main>
+	</div>
+	<footer>
+    <% unless @step.step == 1 %>
+		<a href="/tour/<%= @tour.name %>/<%= @step.step - 1 %>" class="btn secondary hidden-mobile">Vorheriger Schritt</a>
+    <% end %>
+    <% if @step.step == @tour.steps.count %>
+    <a href="/" class="btn">Tutorial abschließen</a>
+    <% else %>
+		<a href="/tour/<%= @tour.name %>/<%= @step.step + 1 %>" class="btn">Weiter</a>
+    <% end %>
+	</footer>
