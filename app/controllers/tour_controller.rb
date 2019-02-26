@@ -64,14 +64,14 @@ class TourController < ApplicationController
     @tourcount = @tour_table.all(:sort => ["tour_id", :desc]).first[:tour_id]
     
     if Step.last.id < @stepcount
-      @step_table.select(formula: "step_id > #{Step.last.id}").each do |step_table|
+      @step_table.select(formula: "step_id > #{Step.last.id}").each do |record|
         Step.create(step: record[:step], tour_id: record[:tour_id].first, head: record[:head], body: record[:body], type: record[:type], video_url: record[:video_url], est_time: record[:est_time], image_url: record[:image_url])
       end
     end  
     
     if Tour.last.id < @tourcount
-      @tour_table.select(formula: "step_id > #{Tour.last.id}").each do |step_table|
-        Tour.create(step: record[:step], tour_id: record[:tour_id].first, head: record[:head], body: record[:body], type: record[:type], video_url: record[:video_url], est_time: record[:est_time], image_url: record[:image_url])
+      @tour_table.select(formula: "step_id > #{Tour.last.id}").each do |record|
+        Tour.create(name: record[:name], description: record[:description], image_url: record[:image_url])
       end
     end 
     
