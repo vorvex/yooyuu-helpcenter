@@ -44,7 +44,11 @@ class TourController < ApplicationController
       if record != nil
         tour.name = record[:name]
         tour.description = record[:description]
-        tour.image_url = record[:image].first.url
+        if record[:image].first.empty?
+          tour.image_url = ""
+        else
+          tour.image_url = record[:image].first[:url]
+        end
         tour.save!
       end
     end
@@ -59,25 +63,29 @@ class TourController < ApplicationController
         step.type = record[:type]
         step.video_url = record[:video_url]
         step.est_time = record[:est_time]
-        step.image_url = record[:image].first.url
+        if record[:image].first.empty?
+          step.image_url = ""
+        else
+          step.image_url = record[:image].first[:url]
+        end
         step.save!
       end
     end
     
-    #@stepcount = @step_table.all(:sort => ["step_id", :desc]).first[:step_id]
-    #@tourcount = @tour_table.all(:sort => ["tour_id", :desc]).first[:tour_id]
+    @stepcount = @step_table.all(:sort => ["step_id", :desc]).first[:step_id]
+    @tourcount = @tour_table.all(:sort => ["tour_id", :desc]).first[:tour_id]
     
-    #if Step.last.id < @stepcount
-    #  @step_table.select(formula: "step_id > #{Step.last.id}").each do |record|
-    #    Step.create(step: record[:step], tour_id: record[:tour_id].first, head: record[:head], body: record[:body], type: record[:type], video_url: record[:video_url], est_time: record[:est_time], image_url: record[:image_url])
-    #  end
-    #end  
-    #
-    #if Tour.last.id < @tourcount
-    #  @tour_table.select(formula: "step_id > #{Tour.last.id}").each do |record|
-    #    Tour.create(name: record[:name], description: record[:description], image_url: record[:image_url])
-    #  end
-    #end 
+    if Step.last.id < @stepcount
+      @step_table.select(formula: "step_id > #{Step.last.id}").each do |record|
+        Step.create(step: record[:step], tour_id: record[:tour_id].first, head: record[:head], body: record[:body], type: record[:type], video_url: record[:video_url], est_time: record[:est_time], image_url: record[:image_url])
+      end
+    end  
+    
+    if Tour.last.id < @tourcount
+      @tour_table.select(formula: "step_id > #{Tour.last.id}").each do |record|
+        Tour.create(name: record[:name], description: record[:description], image_url: record[:image_url])
+      end
+    end 
     
   end
   
