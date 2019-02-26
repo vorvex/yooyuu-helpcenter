@@ -21,7 +21,7 @@
 			<div class="aside-body">
 				<ul class="aside-list">
 					<li class="active">Willkommen</li>
-          <% @tour.steps.each do |step| %>
+          <% @tour.steps.order('step').each do |step| %>
 					<li>Schritt <%= step.step %>: <%= step.head %></li>
           <% end %>
 				</ul>

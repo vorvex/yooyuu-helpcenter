@@ -1,4 +1,3 @@
-<div class="main-container">
 		<aside>
 			<div class="aside-header">
 				<h4>Übersicht</h4>
@@ -21,7 +20,7 @@
 			<div class="aside-body">
 				<ul class="aside-list">
 					<li>Willkommen</li>
-          <% @tour.steps.each do |step| %>
+          <% @tour.steps.order("step").each do |step| %>
 					<li <% if step == @step %>class="active"<% elsif step.step < @step.step %>class="done"<% end %>>Schritt <%= step.step %>: <%= step.head %></li>
           <% end %>
 				</ul>
