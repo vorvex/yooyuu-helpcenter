@@ -41,7 +41,7 @@ class TourController < ApplicationController
     
     Tour.all.each do |tour|
       record = @tour_table.select(formula: "tour_id = #{tour.id}").first
-      if record
+      if record != nil
         tour.name = record[:name]
         tour.description = record[:description]
         tour.image_url = record[:image_url]
@@ -51,7 +51,7 @@ class TourController < ApplicationController
     
     Step.all.each do |step|
       record = @step_table.select(formula: "step_id = #{step.id}").first
-      if record
+      if record != nil
         step.step = record[:step]
         step.tour_id = record[:tour_id].first
         step.head = record[:head]

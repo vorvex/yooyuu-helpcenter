@@ -1,1 +1,4 @@
-<%= @step_table.all(:sort => ["step_id", :desc]).first[:step_id] %>
+<%= @step_table.select(formula: "step_id = 19").first %>
+<script>
+  alert('Erfolgreich aktualisiert.')
+</script>
