@@ -77,24 +77,67 @@
       </a>
       <div class="suche-container">
         <img src="/a/search.png" alt="Such-Icon" class="suche-icon">
-        <form action="post" class="suche" async>
-          <input type="text" id="search" placeholder="Suche" style="width: 100%;">
+        <form action="/ajax/search" method="get" class="suche" id="suche">
+          <input type="text" id="search" placeholder="Suche" name="q" style="width: 100%;">
           <input type="submit" style="display: none" value="Suche">
         </form>
       </div>
       <script>
         if(Modernizr.mq('only screen and (max-width: 768px)')){
             $('.suche-icon').on('click', function(){
-            $('.suche-container').toggleClass('active');
-            $('#search').focus();
+              $('.suche-container').toggleClass('active');
+              $('#search').focus();
+              if($('#search').val().length > 0){
+                $.ajax({
+                  type: 'GET',
+                  url: '/ajax/search',
+                  data: $("#suche").serialize(),
+                  error: function(){
+                    alert('Es ist ein Fehler aufgetretten! Bitte aktualisieren Sie die Seite und versuchen Sie es erneut.');
+                  }	
+							  });
+              }
           });
-
-          $('#search').focusout(function(){
-            $('.suche-container').toggleClass('active');
-          })
         }
+          $('#search').focusout(function(event){
+            if($('.search-result' + ':hover').length) {
+                return;
+            }
+            $('.suche-container').toggleClass('active');
+            $('.search-result-container').fadeOut(500)
+          })
       </script>
     </header>
+    <div class="search-result-container"></div>
     <%= yield %>
+    <script>
+      $('#suche').on('keyup', function(event){
+        event.preventDefault();
+        if($('#search').val().length > 2){
+          $.ajax({
+                  type: 'GET',
+                  url: '/ajax/search',
+                  data: $("#suche").serialize(),
+                  error: function(){
+                    alert('Es ist ein Fehler aufgetretten! Bitte aktualisieren Sie die Seite und versuchen Sie es erneut.');
+                  }	
+                });
+        }
+      })
+      
+      $('#suche').on('submit', function(event){
+        event.preventDefault();
+        
+        $.ajax({
+							  type: 'GET',
+							  url: '/ajax/search',
+							  data: $("#suche").serialize(),
+							  error: function(){
+								  alert('Es ist ein Fehler aufgetretten! Bitte aktualisieren Sie die Seite und versuchen Sie es erneut.');
+							  }	
+				});
+        
+      })
+    </script>
   </body>
 </html>

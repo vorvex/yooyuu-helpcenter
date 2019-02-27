@@ -6,4 +6,9 @@ Rails.application.routes.draw do
   get 'tour/:name/:step' => 'tour#step'
   
   get 'update' => 'tour#update'
+  
+  get 'ajax/search' => 'tour#searchajax'
+  
+  get 'question/:head' => 'question#show'
+  
 end

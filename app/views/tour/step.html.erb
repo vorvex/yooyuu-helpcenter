@@ -20,13 +20,12 @@
 			</div>
 			<div class="aside-body">
 				<ul class="aside-list">
-					<li>Willkommen</li>
           <% @tour.steps.order("step").each do |step| %>
 					<li <% if step == @step %>class="active"<% elsif step.step < @step.step %>class="done"<% end %>>Schritt <%= step.step %>: <%= step.head %></li>
           <% end %>
 				</ul>
         <% unless @step.step == 1 %>
-        <a href="/tour/<%= @tour.name %>/<%= @step.step - 1 %>" class="btn secondary hidden-mobile">Vorheriger Schritt</a>
+          <a href="/tour/<%= @tour.name %>/<%= @step.step - 1 %>" class="btn secondary hidden-desktop">Vorheriger Schritt</a>
         <% end %>
 			</div>
 		</aside>
@@ -38,7 +37,11 @@
 					<path d="M0.522727273,0.522727273 L22.4772727,22.4772727" transform="matrix(-1 0 0 1 23 0)"/>
 				  </g>
 				</svg>
-				<img src="<%= @step.image_url %>" alt="" width="100%">
+				<% if @step.type == "video" %>
+          <iframe width="100%" height="100%" src="<%= @step.video_url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <% else %>
+				  <img src="<%= @step.image_url %>" alt="" width="100%">
+        <% end %>
 			</div>
 			<script>
 				$('.article-img > img').on('click', function(){
@@ -57,8 +60,10 @@
 		</main>
 	</div>
 	<footer>
-    <% unless @step.step == 1 %>
-		<a href="/tour/<%= @tour.name %>/<%= @step.step - 1 %>" class="btn secondary hidden-mobile">Vorheriger Schritt</a>
+    <% if @step.step > 1 %>
+		  <a href="/tour/<%= @tour.name %>/<%= @step.step - 1 %>" class="btn secondary hidden-mobile">Vorheriger Schritt</a>
+    <% else %>
+      <a onclick="window.history.back();" class="btn secondary hidden-mobile">Zurück</a>
     <% end %>
     <% if @step.step == @tour.steps.count %>
     <a href="/" class="btn">Tutorial abschließen</a>

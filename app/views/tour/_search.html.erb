@@ -1,0 +1,9 @@
+<% @search.each do |search| %>
+  <a href="/question/<%= search.head %>" class="search-result">
+    <img src="<%= search.thumbnail_url %>" alt="" height="80px">
+    <div>
+      <h4 class="search-head"><%= search.head %></h4>
+      <p class="search-body"><%= search.body.slice(0, 100) %></p>
+    </div>
+  </a>
+<% end %>

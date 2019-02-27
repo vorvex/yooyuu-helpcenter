@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_25_114145) do
+ActiveRecord::Schema.define(version: 2019_02_26_234259) do
+
+  create_table "questions", force: :cascade do |t|
+    t.string "head"
+    t.string "body"
+    t.string "image_url"
+    t.string "thumbnail_url"
+    t.string "video_url"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "steps", force: :cascade do |t|
     t.integer "step"

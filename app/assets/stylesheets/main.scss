@@ -118,11 +118,19 @@ a:hover {
 	box-shadow: 0 0 4px 0px $color-secondary;
 }
 
+.hidden-desktop {
+  display: none;
+}
+
 @media screen and (max-width: 500px) {
 	.hidden-mobile {
 		display: none;
 	}
 	
+  .hidden-desktop {
+    display: block;
+  }
+  
 	.btn {
 		max-width: 100%;
 	}
@@ -219,6 +227,60 @@ header {
 	}
 }
 
+/* Such Resultate */
+
+.search-result-container {
+	position: fixed;
+	top: 80px;
+	width: 100vw;
+	z-index: 99;
+}
+
+@media screen and (max-width: 600px) {
+  .search-result-container {
+    top: 70px;
+    padding-top: 10px;
+    height: calc(100vh - 80px);
+    z-index: 100;
+    background-color: rgba(255,255,255,0.6)
+}
+  
+  .search-result-container:empty {
+    height: auto;
+  }
+}
+
+.search-result {
+	display: flex;
+  margin: auto;
+	width: calc(100% - 40px);
+	max-width: 600px;
+	background-color: #FFFFFF;
+	padding: 10px;
+  box-shadow: 0 0 10px 0px $color-secondary;
+}
+
+.search-result div {
+	margin-left: 10px;
+}
+
+.search-head {
+	color: $color-primary;
+	font-size: 14px;
+	font-weight: 600px;
+	line-height: 20px;
+	margin: 0 0 5px 0;
+	text-decoration: none !important;
+}
+
+.search-body {
+	font-size: 12px;
+	font-weight: 600px;
+	line-height: 18px;
+	margin: 0;
+	text-decoration: none !important;
+}
+
 
 /* Main-Container */
 
@@ -237,6 +299,7 @@ aside {
 	width: $width-aside;
 	background-color: #FFFFFF;
 	padding: 0px;
+  flex-grow: 1;
 }
 
 .aside-header {
@@ -307,7 +370,8 @@ aside {
 main {
 	display: flex;
 	align-items: center;
-	width: calc(100vw - #{$width-aside} );
+	width: 100%;
+  flex-shrink: 5;
 	flex-direction: column;
 	background-color: $color-background;
 	overflow-y: scroll;
@@ -316,6 +380,16 @@ main {
 
 .article-img {
 	width: 620px;
+}
+
+.article-img > iframe {
+  height:340px;
+}
+
+@media screen and (max-width: 600px) {
+ .article-img > iframe {
+    height:calc((100vw - 40px) / 1.75);
+  }
 }
 
 .article-img.fullscreen {
@@ -328,6 +402,7 @@ main {
 	height: 100vh;
 	z-index: 101;
 	background-color: rgba(0,0,0,0.80);
+  overflow: scroll;
 }
 
 #close-fs {
