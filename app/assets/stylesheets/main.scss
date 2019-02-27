@@ -7,22 +7,26 @@ $color-font: #3B3B3B;
 $color-header: #FDFDFD;
 $width-aside: 360px;
 
+@import url("https://use.typekit.net/szy2xwg.css");
+
+/*
 @font-face {
-    font-family: Fira Sans;
+    font-family: fira-sans;
     src: url(/font/FiraSans-Regular.ttf) format('truetype');
 	font-display: swap;
 }
 
 @font-face {
-    font-family: Fira Sans;
+    font-family: fira-sans;
     src: url(/font/FiraSans-SemiBold.ttf) format('truetype');
 	font-weight: 600;
 	font-display: swap;
 }
+*/
 
 body {
 	background-color: #FFFFFF;
-	font-family: Fira Sans, sans-serif;
+	font-family: fira-sans, sans-serif;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -40,7 +44,7 @@ body {
 /* Schriften */
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: Fira Sans, sans-serif;
+	font-family: fira-sans, sans-serif;
 	font-weight: 600;
 	color: $color-font;
 }
@@ -67,7 +71,7 @@ h4 {
 }
 
 p {
-	font-family: Fira Sans, sans-serif;
+	font-family: fira-sans, sans-serif;
 	font-weight: 400;
 	color: $color-font;
 	font-size: 0.875rem;
@@ -188,7 +192,7 @@ header {
 	background-color: transparent;
 	border-style: hidden;
 	height: 24px;
-	font-family: Fira Sans, sans-serif;
+	font-family: fira-sans, sans-serif;
 	font-weight: 400;
 	color: $color-font;
 	font-size: 1rem;
