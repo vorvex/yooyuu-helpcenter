@@ -463,6 +463,13 @@ article > h1 {
 	padding: 20px;
 }
 
+#close-modal {
+  position: fixed;
+  top: 90px;
+  right: 20px;
+  cursor: pointer;
+}
+
 #org {
 	font-size: 1rem;
 	height: 24px;
