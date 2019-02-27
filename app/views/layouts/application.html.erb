@@ -72,7 +72,7 @@
   </head>
   <body>
     <header>
-      <a href="" class="logo">
+      <a href="/" class="logo">
         <img src="/a/logo.png" alt="YooYuu kommunizieren und organisieren werden eins" height="40px" >
       </a>
       <div class="suche-container">
@@ -83,10 +83,12 @@
         </form>
       </div>
       <script>
-        if(Modernizr.mq('only screen and (max-width: 768px)')){
+        
             $('.suche-icon').on('click', function(){
-              $('.suche-container').toggleClass('active');
-              $('#search').focus();
+              if(Modernizr.mq('only screen and (max-width: 768px)')){
+                $('.suche-container').toggleClass('active');
+                $('#search').focus();
+              }
               if($('#search').val().length > 0){
                 $.ajax({
                   type: 'GET',
@@ -97,14 +99,13 @@
                   }	
 							  });
               }
-          });
-        }
+            });
           $('#search').focusout(function(event){
             if($('.search-result' + ':hover').length) {
                 return;
             }
             $('.suche-container').toggleClass('active');
-            $('.search-result-container').fadeOut(500)
+            $('.search-result-container').fadeOut(250)
           })
       </script>
     </header>
