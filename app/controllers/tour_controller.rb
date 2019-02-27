@@ -130,7 +130,7 @@ class TourController < ApplicationController
     
     if lastquestion < @questioncount
       @question_table.select(formula: "question_id > #{lastquestion}").each do |record|
-        Question.create(head: record[:head], body: record[:body], type: record[:type], video_url: record[:video_url], image_url: record[:image].first[:url], thumbnail_url: record[:image].first[:thumbnails][:large][:url])
+        Question.create(head: record[:head], body: record[:body], type: record[:type], video_url: record[:video_url])
       end
     end 
     
