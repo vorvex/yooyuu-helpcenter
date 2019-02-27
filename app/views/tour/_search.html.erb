@@ -1,5 +1,5 @@
 <% @search.each do |search| %>
-  <a href="/question/<%= search.head %>" class="search-result">
+  <a href="/question/<%= search.id %>" class="search-result">
     <img src="<%= search.thumbnail_url %>" alt="" height="80px">
     <div>
       <h4 class="search-head"><%= search.head %></h4>

@@ -1,7 +1,7 @@
 class QuestionController < ApplicationController
   
   def show
-    @question = Question.find_by_head(params[:head])
+    @question = Question.find(params[:id])
   end
   
 end

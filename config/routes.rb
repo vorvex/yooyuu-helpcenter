@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   
   get 'ajax/search' => 'tour#searchajax'
   
-  get 'question/:head' => 'question#show'
+  get 'question/:id' => 'question#show'
   
 end
