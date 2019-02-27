@@ -54,6 +54,35 @@ class TourController < ApplicationController
     @step_records = @step_table.records
     @question_records = @question_table.records
     
+    @stepcount = @step_table.all(:sort => ["step_id", :desc]).first[:step_id]
+    @tourcount = @tour_table.all(:sort => ["tour_id", :desc]).first[:tour_id]
+    @questioncount = @question_table.all(:sort => ["question_id", :desc]).first[:question_id]
+    
+    if Step.last.id < @stepcount
+      @step_table.select(formula: "step_id > #{Step.last.id}").each do |record|
+        Step.create(step: record[:step], tour_id: record[:tour_id].first, head: record[:head], body: record[:body], type: record[:type], video_url: record[:video_url], est_time: record[:est_time], image_url: record[:image].first[:url])
+      end
+    end  
+    
+    if Tour.last.id < @tourcount
+      @tour_table.select(formula: "step_id > #{Tour.last.id}").each do |record|
+        Tour.create(name: record[:name], description: record[:description], image_url: record[:image].first[:url])
+      end
+    end 
+    
+    if Question.last.nil? 
+      lastquestion = 0
+    else
+      lastquestion = Question.last.id
+    end
+      
+    
+    if lastquestion < @questioncount
+      @question_table.select(formula: "question_id > #{lastquestion}").each do |record|
+        Question.create(head: record[:head], body: record[:body], type: record[:type], video_url: record[:video_url], image_url: "", thumbnail_url: "")
+      end
+    end
+    
     Tour.all.each do |tour|
       record = @tour_table.select(formula: "tour_id = #{tour.id}").first
       if record != nil
@@ -102,35 +131,6 @@ class TourController < ApplicationController
           question.thumbnail_url = record[:image].first[:thumbnails][:large][:url]
         end
         question.save!
-      end
-    end
-    
-    @stepcount = @step_table.all(:sort => ["step_id", :desc]).first[:step_id]
-    @tourcount = @tour_table.all(:sort => ["tour_id", :desc]).first[:tour_id]
-    @questioncount = @question_table.all(:sort => ["question_id", :desc]).first[:question_id]
-    
-    if Step.last.id < @stepcount
-      @step_table.select(formula: "step_id > #{Step.last.id}").each do |record|
-        Step.create(step: record[:step], tour_id: record[:tour_id].first, head: record[:head], body: record[:body], type: record[:type], video_url: record[:video_url], est_time: record[:est_time], image_url: record[:image].first[:url])
-      end
-    end  
-    
-    if Tour.last.id < @tourcount
-      @tour_table.select(formula: "step_id > #{Tour.last.id}").each do |record|
-        Tour.create(name: record[:name], description: record[:description], image_url: record[:image].first[:url])
-      end
-    end 
-    
-    if Question.last.nil? 
-      lastquestion = 0
-    else
-      lastquestion = Question.last.id
-    end
-      
-    
-    if lastquestion < @questioncount
-      @question_table.select(formula: "question_id > #{lastquestion}").each do |record|
-        Question.create(head: record[:head], body: record[:body], type: record[:type], video_url: record[:video_url])
       end
     end 
     

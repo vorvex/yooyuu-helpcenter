@@ -251,13 +251,14 @@ header {
 }
 
 .search-result {
-	display: flex;
-  margin: auto;
-	width: calc(100% - 40px);
-	max-width: 600px;
-	background-color: #FFFFFF;
-	padding: 10px;
-  box-shadow: 0 0 10px 0px $color-secondary;
+	  display: flex;
+    margin: 0 auto 10px auto;
+    width: calc(100% - 40px);
+    max-width: 600px;
+    background-color: #FFFFFF;
+    padding: 10px;
+    box-shadow: 0 0 10px 0px rgba(119, 119, 119, 0.5);
+}
 }
 
 .search-result div {
