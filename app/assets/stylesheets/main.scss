@@ -384,6 +384,7 @@ main {
 
 .article-img {
 	width: 620px;
+  min-height: 100px;
 }
 
 .article-img > iframe {
@@ -391,7 +392,6 @@ main {
 }
 
 .article-img img {
-  min-height: 340px;
 }
 
 @media screen and (max-width: 600px) {
