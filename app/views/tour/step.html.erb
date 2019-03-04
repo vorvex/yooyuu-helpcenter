@@ -55,13 +55,14 @@
 				//$('#close-fs').on('click', function(){
 				//	$('.article-img').toggleClass('fullscreen');
 				//})
-				
-        $('.article-img').slick({
-          infinite: true,
-          speed: 300,
-          slidesToShow: 1,
-          adaptiveHeight: true
-        });
+        $('.article-img').slick();
+        
+				$(window).on('load', function(){
+           $('.article-img').slick({
+              adaptiveHeight: true
+           });
+        })
+       
 			</script>
 			<article>
 				<h1><%= @step.head %></h1>

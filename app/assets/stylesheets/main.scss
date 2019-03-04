@@ -384,15 +384,12 @@ main {
 
 .article-img {
 	width: 620px;
-  min-height: 100px;
 }
 
 .article-img > iframe {
   height:340px;
 }
 
-.article-img img {
-}
 
 @media screen and (max-width: 600px) {
  .article-img > iframe {
