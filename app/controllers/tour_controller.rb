@@ -85,7 +85,7 @@
     
     Tour.all.each do |tour|
       record = @tour_table.select(formula: "tour_id = #{tour.id}").first
-      if record != nil
+      if record != nil && record[:status] == "Fertig"
         tour.name = record[:name]
         tour.description = record[:description]
         if record[:image].first.empty?
@@ -118,7 +118,7 @@
     
     Question.all.each do |question|
       record = @question_table.select(formula: "question_id = #{question.id}").first
-      if record != nil
+      if record != nil && record[:status] == "Fertig"
         question.head = record[:head]
         question.body = record[:body]
         question.type = record[:type]
