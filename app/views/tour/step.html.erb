@@ -1,3 +1,4 @@
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <div class="main-container">
   <aside>
 			<div class="aside-header">
@@ -31,27 +32,35 @@
 		</aside>
 		<main>
 			<div class="article-img">
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 25 25" id="close-fs">
+				<!--<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 25 25" id="close-fs">
 				  <g fill="none" fill-rule="evenodd" stroke="#FFF" stroke-linecap="round" stroke-width="2" transform="translate(1 1)">
 					<path d="M0.522727273,0.522727273 L22.4772727,22.4772727"/>
 					<path d="M0.522727273,0.522727273 L22.4772727,22.4772727" transform="matrix(-1 0 0 1 23 0)"/>
 				  </g>
-				</svg>
+				</svg>-->
 				<% if @step.type == "video" %>
           <iframe width="100%" height="100%" src="<%= @step.video_url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <% else %>
-				  <img src="<%= @step.image_url %>" alt="" width="100%">
+          <% @images.each do |image| %>
+            <image src="<%= image %>" width="100%"/>
+          <% end %>
         <% end %>
 			</div>
 			<script>
-				$('.article-img > img').on('click', function(){
-					$('.article-img').toggleClass('fullscreen');
-				})
+				//$('.article-img > img').on('click', function(){
+				//	$('.article-img').toggleClass('fullscreen');
+				//})
 				
-				$('#close-fs').on('click', function(){
-					$('.article-img').toggleClass('fullscreen');
-				})
+				//$('#close-fs').on('click', function(){
+				//	$('.article-img').toggleClass('fullscreen');
+				//})
 				
+        $('.article-img').slick({
+          infinite: true,
+          speed: 300,
+          slidesToShow: 1,
+          adaptiveHeight: true
+        });
 			</script>
 			<article>
 				<h1><%= @step.head %></h1>
@@ -71,3 +80,4 @@
 		<a href="/tour/<%= @tour.name %>/<%= @step.step + 1 %>" class="btn">Weiter</a>
     <% end %>
 	</footer>
+  

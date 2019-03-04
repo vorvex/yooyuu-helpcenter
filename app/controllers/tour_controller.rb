@@ -34,6 +34,7 @@
   def step
     @tour = Tour.find_by_name(params[:name])
     @step = @tour.steps.find_by_step(params[:step])
+    @images = @step.image_url.split(',')
     @time_done = 0
     @tour.steps.where('step < ?', @step.step).each do |step|
       @time_done += step.est_time
@@ -110,7 +111,12 @@
         if record[:image].first.empty?
           step.image_url = ""
         else
-          step.image_url = record[:image].first[:url]
+          images = Array.new
+          record[:image].each do |image|
+            images.append(image[:url])
+          end
+          delim = ','
+          step.image_url = images.join(delim)
         end
         step.save!
       end
