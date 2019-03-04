@@ -390,6 +390,10 @@ main {
   height:340px;
 }
 
+.article-img img {
+  min-height: 340px;
+}
+
 @media screen and (max-width: 600px) {
  .article-img > iframe {
     height:calc((100vw - 40px) / 1.75);
