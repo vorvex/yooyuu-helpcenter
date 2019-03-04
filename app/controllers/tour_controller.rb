@@ -99,7 +99,7 @@
     
     Step.all.each do |step|
       record = @step_table.select(formula: "step_id = #{step.id}").first
-      if record != nil
+      if record != nil && record[:status] == "Fertig"
         step.step = record[:step]
         step.tour_id = record[:tour_id].first
         step.head = record[:head]
