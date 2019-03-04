@@ -1,4 +1,4 @@
-class TourController < ApplicationController
+  class TourController < ApplicationController
   
   def willkommen_organizator
     @tour = Tour.first
@@ -125,7 +125,7 @@ class TourController < ApplicationController
         question.video_url = record[:video_url]
         if record[:image].first.empty?
           question.image_url = ""
-          question.thumbnail_url = ""
+          question.thumbnail_url = record[:thumbnail].first[:url] unless record[:thumbnail].first.empty?
         else
           question.image_url = record[:image].first[:url]
           question.thumbnail_url = record[:image].first[:thumbnails][:large][:url]

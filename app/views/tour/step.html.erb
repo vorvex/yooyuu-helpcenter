@@ -21,7 +21,7 @@
 			<div class="aside-body">
 				<ul class="aside-list">
           <% @tour.steps.order("step").each do |step| %>
-					<li <% if step == @step %>class="active"<% elsif step.step < @step.step %>class="done"<% end %>>Schritt <%= step.step %>: <%= step.head %></li>
+          <li <% if step == @step %>class="active"<% elsif step.step < @step.step %>class="done"<% end %>><a href="/tour/<%= @tour.name %>/<%= step.step %>" style="color: #000000;" >Schritt <%= step.step %>: <%= step.head %></a></li>
           <% end %>
 				</ul>
         <% unless @step.step == 1 %>
