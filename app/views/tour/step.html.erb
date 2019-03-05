@@ -39,10 +39,10 @@
 				  </g>
 				</svg>-->
 				<% if @step.video_url != "" %>
-          <iframe width="100%" height="100%" src="<%= @step.video_url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe width="100%" class="iframe" src="<%= @step.video_url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <% end %>
         <% @images.each do |image| %>
-          <img src="<%= image %>" width="100%"/>
+          <img src="<%= image %>" style="height: auto" class="image-slider"/>
         <% end %>
 			</div>
       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -55,7 +55,7 @@
 				//	$('.article-img').toggleClass('fullscreen');
 				//})
         
-        $('.article-img').slick();
+        $('.article-img').slick({adaptiveHeight: true});
        
 			</script>
 			<article>

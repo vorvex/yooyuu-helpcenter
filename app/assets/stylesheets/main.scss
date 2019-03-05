@@ -393,16 +393,23 @@ main {
 
 .article-img {
 	width: 620px;
+  min-height: 150px;
 }
 
-.article-img > iframe {
-  height:340px;
+.article-img iframe {
+  height: auto; 
+  height: 340px;
 }
 
+.image-slider {
+  width: 100%;
+  height: auto;
+  min-height: 100px;
+}
 
 @media screen and (max-width: 600px) {
- .article-img > iframe {
-    height:calc((100vw - 40px) / 1.75);
+ .article-img iframe {
+    height:calc((100vw - 40px) / 1.75) !important;
   }
 }
 
@@ -659,4 +666,8 @@ footer > .btn {
 .slide .arrow .arrow-right {
   right: 20px;
   background: url("/a/arrow-right.png");
+}
+
+.slick-list.draggable {
+  min-height: 100px !important;
 }
