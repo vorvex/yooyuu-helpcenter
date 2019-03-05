@@ -7,16 +7,16 @@ class WelcomeController < ApplicationController
   end
   
   def search
-    search = params[:q]
+    search = params[:q].downcase
       @tour = Array.new()
-      Tour.where('name LIKE ? OR description LIKE ?', "%#{search}%", "%#{search}%").each do |tour|
+      Tour.where('lower(name) LIKE ? OR lower(description) LIKE ?', "%#{search}%", "%#{search}%").each do |tour|
         @tour << tour
       end
-      Step.where('head LIKE ? OR body LIKE ?', "%#{search}%", "%#{search}%").each do |step|
+      Step.where('lower(head) LIKE ? OR lower(body) LIKE ?', "%#{search}%", "%#{search}%").each do |step|
         @tour << Tour.find(step.tour_id)
       end
       @tour = @tour.uniq
-      @questions = Question.where('head LIKE ? OR body LIKE ?', "%#{search}%", "%#{search}%")
+      @questions = Question.where('lower(head) LIKE ? OR lower(body) LIKE ?', "%#{search}%", "%#{search}%")
   end
   
   

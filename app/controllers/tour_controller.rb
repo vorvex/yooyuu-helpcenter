@@ -24,9 +24,9 @@
   end
   
   def searchajax
-    search = params[:q]
+    search = params[:q].downcase
     if search != ""
-      @search = Question.where('head LIKE ? OR body LIKE ?', "%#{search}%", "%#{search}%").limit(5)
+      @search = Question.where('lower(head) LIKE ? OR lower(body) LIKE ?', "%#{search}%", "%#{search}%").limit(5)
     else
       @search = Question.none
     end
