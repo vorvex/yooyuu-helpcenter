@@ -8,7 +8,6 @@ class WelcomeController < ApplicationController
   
   def search
     search = params[:q]
-    if search != ""
       @tour = Array.new()
       Tour.where('name LIKE ? OR description LIKE ?', "%#{search}%", "%#{search}%").each do |tour|
         @tour << tour
@@ -18,10 +17,6 @@ class WelcomeController < ApplicationController
       end
       @tour = @tour.uniq
       @questions = Question.where('head LIKE ? OR body LIKE ?', "%#{search}%", "%#{search}%")
-    else
-      @tour = Tour.none
-      @questions = Question.none
-    end
   end
   
   
