@@ -99,7 +99,7 @@
         if record[:image].first.empty?
           tour.image_url = ""
         else
-          tour.image_url = record[:image].first[:url]
+          tour.image_url = record[:image].first[:thumbnails][:large][:url]
         end
         tour.save!
       end

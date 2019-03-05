@@ -49,7 +49,7 @@
                   </div>
                     <p><%= tour.description %></p>
                 </div>
-                <img src="<%= tour.image_url %>" alt="<%= tour.name %>">
+                <img class="lazy" data-src="<%= tour.image_url %>" alt="<%= tour.name %>">
               </a>
             <% end %>
         </div>
@@ -66,7 +66,7 @@
                 </div>
                   <p><%= question.body[0, 140] %><% if question.body.length > 140 %>...<% end %></p>
               </div>
-              <img src="<%= question.image_url %>" alt="">
+              <img class="lazy" data-src="<%= question.thumbnail_url %>" alt="">
             </a>
             <% end %>
         </div>
@@ -92,4 +92,16 @@
           $('.suche-container').addClass('hidden-desktop');
         }
       });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
+    <script>
+      $('.lazy').Lazy({
+        // your configuration goes here
+        scrollDirection: 'vertical',
+        effect: 'fadeIn',
+        visibleOnly: true,
+        onError: function(element) {
+            console.log('error loading ' + element.data('src'));
+        }
+        });
     </script>
