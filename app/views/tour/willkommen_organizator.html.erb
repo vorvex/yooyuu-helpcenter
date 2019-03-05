@@ -22,7 +22,7 @@
 				<ul class="aside-list">
 					<li class="active">Willkommen</li>
           <% @tour.steps.order('step').each do |step| %>
-					<li><a href="/tour/<%= @tour.name %>/<%= step.step %>" style="color: #000000;">Schritt <%= step.step %>: <%= step.head %></a></li>
+					<li><a href="/<%= @tour.path %>/<%= step.step %>" style="color: #000000;">Schritt <%= step.step %>: <%= step.head %></a></li>
           <% end %>
 				</ul>
 				<a href="/a/yooyuu-bedienungsanleitung.pdf" target="_blank" class="btn secondary">PDF-Bedienungsanleitung</a>
@@ -130,5 +130,5 @@
 	</div>
 	<footer>
 		<a href="/a/yooyuu-bedienungsanleitung.pdf" target="_blank" class="btn secondary hidden-mobile">PDF-Bedienungsanleitung</a>
-		<a href="/tour/Organizator%20Erste%20Schritte/1" class="btn">Tour beginnen</a>
+		<a href="/erste-schritte/1" class="btn">Tour beginnen</a>
 	</footer>

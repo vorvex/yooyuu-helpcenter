@@ -1,0 +1,241 @@
+// Place all the styles related to the welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$color-primary: #7E5C77;
+$color-secondary: #777777;
+$color-tertiary: #CCCCCC;
+$color-background: #F4F4F4;
+$color-font: #3B3B3B;
+
+/* Startseite */
+
+.index-body {
+	background-image: url(/a/smartphone-with-horse.jpg);
+	background-size: cover;
+	background-position: right 10%;
+	background-attachment: fixed;
+}
+
+@media screen and (max-width: 600px) {
+  .index-body:before {content: ""; background-image: inherit; position: fixed; top: 0; left: 0; height: 100vh; width: 100%; -webkit-background-size: cover !important; -moz-background-size: cover !important; -o-background-size: cover; background-size: cover !important; z-index: -1; background-position: 60%;}
+}
+
+.index {
+	background: linear-gradient(rgba(255,255,255, 0), rgba(255,255,255, 1));
+	padding-bottom: 1px;
+	overflow-x: hidden;
+}
+
+.search-top {
+	margin-top: 30vh;
+	display: flex;
+	justify-content: center;
+	height: 200px;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 20vh;
+}
+
+.search-top > img {
+	margin: 0 0 20px 0;
+}
+
+/* Suche  XL*/
+.suche-container-xl {
+	display: flex;
+	align-items: center;
+	width: 40vw;
+	min-width: 500px;
+	max-width: 100vw;
+	height: 32px;
+	margin: 10px auto;
+	padding: 10px 20px;
+	background: #FFFFFF;
+	box-shadow: 0 2px 10px 0 rgba(0,0,0,0.50);
+}
+
+.suche-xl {
+	margin-left: 15px;
+	flex-grow: 1;
+}
+
+.suche-icon-xl {
+	height: 32px;
+	width: 32px;
+}
+
+.suche-xl > input {
+	background-color: transparent;
+	border-style: hidden;
+	height: 32px;
+	font-family: fira-sans, sans-serif;
+	font-weight: 400;
+	color: $color-font;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	width: 100%;
+}
+
+.suche-xl > input:placeholder {
+	color: $color-secondary;
+}
+
+.suche-xl > input:focus {
+	outline: none !important;
+}
+
+/* Tutorial-Container */
+
+.index-tutorial-container {
+	width: 90%;
+	margin: 0 5%; 
+}
+
+.index-tutorial-container-header {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-content: flex-start;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+
+.index-tutorial-container-header > h3 {
+	margin: 0px;
+	color: $color-primary;
+}
+
+.index-container-inner {
+	display: flex;
+	align-content: flex-start;
+	flex-wrap: wrap;
+	margin-bottom: 30px;
+}
+
+.index-container-inner:empty {
+  height: 103px;
+}
+
+
+.preview {
+	display: block;
+	width: 300px;
+	height: 200px;
+	overflow: hidden;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+
+.preview:last-child {
+	margin-right: 0px;
+}
+
+.preview:hover {
+	text-decoration: none;
+}
+
+.preview-inner {
+	position: relative;
+	top: 137px;
+	left: 0px;
+  z-index: 10;
+  padding: 10px;
+	padding-top: 40px;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+	transition: 500ms ease;
+	background-image: -webkit-linear-gradient(rgba(0,0,0,0.00) 10%, rgba(0,0,0,0.90) 100%);
+	background-image: -o-linear-gradient(rgba(0,0,0,0.00) 10%, rgba(0,0,0,0.90) 100%);
+	background-image: linear-gradient(rgba(0,0,0,0.00) 10%, rgba(0,0,0,0.90) 100%);
+}
+
+.preview-inner.hover {
+	top: 85px;
+}
+
+.preview-inner.qa {
+	position: relative;
+	top: 123px;
+	left: 0px;
+    z-index: 10;
+    padding: 10px;
+	padding-top: 40px;
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+	transition: 500ms ease;
+	background-image: -webkit-linear-gradient(rgba(0,0,0,0.00) 0%, rgba(0,0,0,1) 100%);
+	background-image: -o-linear-gradient(rgba(0,0,0,0.00) 0%, rgba(0,0,0,1) 100%);
+	background-image: linear-gradient(rgba(0,0,0,0.00) 0%, rgba(0,0,0,1) 100%);
+}
+
+.preview-inner.qa.hover {
+	top: 71px;
+}
+
+.preview-inner > div {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.preview-inner > div > h4 {
+	font-size: 14px;
+	color: white;
+	line-height: 16px;
+	margin: 0;
+	margin-bottom: 5px;
+	text-decoration: none;
+}
+
+.preview-inner > div > span {
+	font-size: 14px;
+	color: white;
+	line-height: 16px;
+	margin: 0;
+	margin-bottom: 5px;
+	font-weight: 400;
+	text-decoration: none;
+}
+
+.preview-inner > p {
+	color: white;
+	font-size: 12px;
+	line-height: 16px;
+	margin: 0px;
+}
+
+.preview img {
+	position: relative;
+	width: 100%;
+  min-height: 100%;
+	top: -230px;
+	left: 0px;
+}
+
+@media screen and (max-width: 640px) {
+	
+	.index-body {
+		background-image: url(/a/smartphone-with-horse.jpg);
+		background-size: cover;
+		background-position: 70%;
+		background-attachment: fixed;
+	}	
+	
+	.search-top {
+		margin: 80px 0px 20px 0px;
+	}
+	
+	.suche-container-xl {
+	display: none;
+	}
+	
+	.preview {
+		width: 100%;
+		margin-right: 0px;
+	}
+  
+  .index-container-inner:empty {
+    height: 300px;
+  }
+}

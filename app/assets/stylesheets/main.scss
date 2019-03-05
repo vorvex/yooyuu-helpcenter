@@ -178,6 +178,10 @@ header {
 	background-color: $color-background;
 }
 
+.suche-container.hidden-desktop {
+		display: none;
+	}
+
 .suche {
 	margin-left: 10px;
 	flex-grow: 1;
@@ -197,6 +201,7 @@ header {
 	color: $color-font;
 	font-size: 1rem;
 	line-height: 1.5rem;
+	width: 100%;
 }
 
 .suche > input:placeholder {
@@ -220,6 +225,10 @@ header {
 		padding: 8px;
 		background-color: $color-header;
 		transition: 500ms ease;
+	}
+	
+	.suche-container.hidden-desktop {
+		display: flex !important;
 	}
 	
 	.suche-container.active {

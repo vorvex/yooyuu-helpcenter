@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- Specify a launch screen image that is displayed while your web application launches. Replace app.png with your image file path -->
+    <link rel="apple-touch-startup-image" href="/a/app.png">
+    <!-- Mobile Internet Explorer allows us to activate ClearType technology for smoothing fonts for easy reading -->
+    <meta http-equiv="cleartype" content="on">
+    <!-- Specify whether or not telephone numbers in the HTML content should appear as hypertext links -->
+    <meta name="format-detection" content="telephone=no" />
+    <!-- Changes the logical window size used when displaying a page mobile browsers -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />	
+    <title><%= @title %></title>
+    <!-- Provide a short description of the page. -->
+    <meta name="description" content="<%= @description %>">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "<%= Rails.root %>",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "<%= Rails.root %>/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- Control the behavior of search engine crawling and indexing. 
+     The robots meta tag applies to all search engines, while the "googlebot" meta tag is specific to Google. -->
+    <meta name="robots" content="..., ..." />
+    <meta name="http-equiv" content="X-Robots-Tag : noindex, follow" />
+    <meta name="googlebot" content="..., ..." />	
+    <!-- Used for verifying ownership of a site. -->
+    <meta name="verify" content=""/>
+    <!-- Open Graph Meta Tags -->
+    <!-- Set the canonical URL for the page you are sharing. -->
+    <meta property="og:url" content="<%= @website %>">
+    <!-- The title to accompany the URL. -->
+    <meta property="og:title" content="<%= @title %>"/>
+    <!-- Provides Facebook the name that you would like your website to be recognized by. -->
+    <meta property="og:site_name" content="YooYuu Hilfecenter">
+    <!-- Provides Facebook the type of website that you would like your website to be categorized by. -->
+    <meta property="og:type" content="website">
+    <!-- Defines the language, American English is the default. -->
+    <meta property="og:locale" content="de-DE">
+    <!-- Directs Facebook to use the specified image when the page is shared. -->
+    <meta property="og:image" content="<%= @image %>">
+    <!-- Similar to the meta description tag in HTML. This description is shown below the link title on Facebook. -->
+    <meta property="og:description" content="<%= @description %>"/>
+
+    <!-- Twitter Card data -->
+    <!-- The type of card to be created: summary, photo, or video -->
+    <meta name="twitter:card" content="summary" />
+    <!-- Title of the Twitter Card -->
+    <meta name="twitter:title" content="<%= @title %>" />
+    <!-- Description of content -->
+    <meta name="twitter:description" content="<%= @description %>" />
+    <!-- URL of image to use in the card. Used with summary, summary_large_image, player cards -->
+    <meta name="twitter:image" content="<%= @image %>" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="/modernizr-custom.js"></script>
+    <link rel="icon" href="https://www.yooyuu.de/wp-content/uploads/2017/05/cropped-yooyuu-logo_icon-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon-precomposed" href="https://www.yooyuu.de/wp-content/uploads/2017/05/cropped-yooyuu-logo_icon-180x180.png" />
+    <meta name="msapplication-TileImage" content="https://www.yooyuu.de/wp-content/uploads/2017/05/cropped-yooyuu-logo_icon-270x270.png" />
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+  </head>
+  <body class="index-body">
+    <%= yield %>
+  </body>
+</html>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_26_234259) do
+ActiveRecord::Schema.define(version: 2019_03_05_102155) do
 
   create_table "questions", force: :cascade do |t|
     t.string "head"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 2019_02_26_234259) do
     t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "path"
+    t.string "final_path"
   end
 
 end

@@ -1,0 +1,86 @@
+<header>
+      <a href="" class="logo">
+        <img src="/a/logo.png" alt="YooYuu kommunizieren und organisieren werden eins" height="40px" >
+      </a>
+      <div class="suche-container hidden-desktop">
+        <img src="/a/search.png" alt="Such-Icon" class="suche-icon">
+        <form action="search" class="suche" id="suche">
+          <input type="text" id="search" placeholder="Suche" name="q" style="width: 100%;">
+          <input type="submit" style="display: none" value="Suche">
+        </form>
+      </div>
+      <script>
+        
+            $('.suche-icon').on('click', function(){
+              if(Modernizr.mq('only screen and (max-width: 768px)')){
+                $('.suche-container').toggleClass('active');
+                $('#search').focus();
+              }
+            });
+        
+          $('#search').focusout(function(event){
+            $('.suche-container').toggleClass('active');
+          })
+        
+      </script>
+    </header>
+    <div class="index">
+      <div class="search-top">
+        <img src="a/yooyu-hilfe.png" width="235" height="96" alt=""/>
+        <div class="suche-container-xl">
+          <img src="/a/search.png" alt="Such-Icon" class="suche-icon-xl">
+          <form action="/search" class="suche-xl" async>
+            <input type="text" id="searchxl" name="q" placeholder="Suche">
+            <input type="submit" style="display: none" value="Suche">
+          </form>
+        </div>
+      </div>
+      <div class="index-tutorial-container">
+        <div class="index-tutorial-container-header">
+          <h3><%= @tour.length + @questions.length %> Suchergebnisse</h3>
+          </div>
+          <div class="index-container-inner"><% @tour.each do |tour| %>
+              <a href="/<%= tour.path %>" class="preview">
+                <div class="preview-inner">
+                  <div>
+                    <h4><%= tour.name %></h4><span>Dauer: <%= tour.est_time %>min</span>
+                  </div>
+                    <p><%= tour.description %></p>
+                </div>
+                <img src="<%= tour.image_url %>" alt="<%= tour.name %>">
+              </a>
+            <% end %>
+            <% @questions.each do |question| %>
+            <a href="/question/<%= question.id %>" class="preview">
+              <div class="preview-inner qa">
+                <div>
+                  <h4><%= question.head %></h4>
+                </div>
+                  <p><%= question.body[0, 140] %><% if question.body.length > 140 %>...<% end %></p>
+              </div>
+              <img src="<%= question.image_url %>" alt="">
+            </a>
+            <% end %></div>
+      </div>
+    </div>
+    <script>
+      $('.preview').mouseover(function(){
+        $(this).children().toggleClass('hover');
+      });
+      $('.preview').mouseout(function(){
+        $(this).children().toggleClass('hover');
+      });
+
+      $(window).scroll(function(){
+        var scroll = $(this).scrollTop();
+        var scale = scroll/1000 + 1;
+        var opacity = 1 - scroll/350;
+        $('.search-top').css('transform', 'scale(' + scale + ')');
+        $('.search-top').css('opacity', opacity );
+        if(scroll > 300) {
+          $('.suche-container').removeClass('hidden-desktop');
+        } else {
+          $('.suche-container').addClass('hidden-desktop');
+        }
+      });
+    </script>

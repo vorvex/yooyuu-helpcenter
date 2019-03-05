@@ -14,6 +14,11 @@
     @description = ""
   end
   
+  def index 
+    @tour = Tour.all.limit(4);
+    @questions = Questions.all.limit(8);
+  end
+    
   def testdaten
     TestdatenMailer.with(org: params[:org]).testdaten.deliver_now
   end
@@ -21,7 +26,7 @@
   def searchajax
     search = params[:q]
     if search != ""
-      @search = Question.where('head LIKE ? OR body LIKE ?', "%#{search}%", "%#{search}%").limit(5);
+      @search = Question.where('head LIKE ? OR body LIKE ?', "%#{search}%", "%#{search}%").limit(5)
     else
       @search = Question.none
     end
@@ -32,7 +37,7 @@
   
   
   def step
-    @tour = Tour.find_by_name(params[:name])
+    @tour = Tour.find_by_path(params[:path])
     @step = @tour.steps.find_by_step(params[:step])
     @images = @step.image_url.split(',')
     @time_done = 0
@@ -67,7 +72,7 @@
     
     if Tour.last.id < @tourcount
       @tour_table.select(formula: "step_id > #{Tour.last.id}").each do |record|
-        Tour.create(name: record[:name], description: record[:description], image_url: record[:image].first[:url])
+        Tour.create(name: record[:name], description: record[:description], image_url: record[:image].first[:url], path: record[:path], final_path: record[:final_path])
       end
     end 
     
@@ -89,6 +94,8 @@
       if record != nil && record[:status] == "Fertig"
         tour.name = record[:name]
         tour.description = record[:description]
+        tour.path = record[:path]
+        tour.final_path = record[:final_path]
         if record[:image].first.empty?
           tour.image_url = ""
         else
