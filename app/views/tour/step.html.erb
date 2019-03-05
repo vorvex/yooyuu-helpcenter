@@ -42,7 +42,7 @@
           <iframe width="100%" class="iframe" src="<%= @step.video_url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <% end %>
         <% @images.each do |image| %>
-          <img src="<%= image %>" style="height: auto" class="image-slider"/>
+          <img data-src="<%= image %>" style="height: auto" class="image-slider"/>
         <% end %>
 			</div>
       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -76,4 +76,15 @@
 		<a href="/<%= @tour.path %>/<%= @step.step + 1 %>" class="btn">Weiter</a>
     <% end %>
 	</footer>
-  
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
+    <script>
+      $('.image-slider').Lazy({
+        // your configuration goes here
+        scrollDirection: 'vertical',
+        effect: 'fadeIn',
+        visibleOnly: true,
+        onError: function(element) {
+            console.log('error loading ' + element.data('src'));
+        }
+        });
+    </script>
