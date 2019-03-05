@@ -54,10 +54,7 @@
 				//$('#close-fs').on('click', function(){
 				//	$('.article-img').toggleClass('fullscreen');
 				//})
-        
-        $('.article-img').slick({adaptiveHeight: true});
-       
-			</script>
+      </script>
 			<article>
 				<h1><%= @step.head %></h1>
 				<p><%= @step.body %></p>
@@ -85,6 +82,8 @@
         visibleOnly: true,
         onError: function(element) {
             console.log('error loading ' + element.data('src'));
-        }
+        },
+        onFinishedAll: function() {
+            $('.article-img').slick({adaptiveHeight: true});
         });
     </script>
