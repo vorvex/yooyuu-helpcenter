@@ -9,8 +9,8 @@
           <input type="submit" style="display: none" value="Suche">
         </form>
       </div>
-    </header>
-    <div class="search-preview-ajax"></div>
+</header>
+<div class="search-preview-ajax"></div>
     <div class="index">
       <div class="search-top">
         <img src="a/yooyu-hilfe.png" width="235" height="96" alt=""/>
@@ -69,9 +69,26 @@
         <div class="index-tutorial-container-header">
           <h3>Fragen & Antworten</h3>
           <a href="">Alle anzeigen</a>
-          </div>
-          <div class="index-container-inner">
-            <% @questions.each do |question| %>
+        </div>
+        <div class="index-container-inner">
+            <% @faqs.each do |question| %>
+            <a href="/question/<%= question.id %>" class="preview">
+              <div class="preview-inner qa">
+                <div>
+                  <h4><%= question.head %></h4>
+                </div>
+                  <p><%= question.body[0, 140] %><% if question.body.length > 140 %>...<% end %></p>
+              </div>
+              <img class="lazy" data-src="<%= question.thumbnail_url %>" alt="">
+            </a>
+            <% end %>
+        </div>
+        <div class="index-tutorial-container-header">
+          <h3>Funktionen</h3>
+          <a href="">Alle anzeigen</a>
+        </div>
+        <div class="index-container-inner">
+            <% @faqs.each do |question| %>
             <a href="/question/<%= question.id %>" class="preview">
               <div class="preview-inner qa">
                 <div>

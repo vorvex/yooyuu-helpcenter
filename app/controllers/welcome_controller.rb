@@ -3,7 +3,8 @@ class WelcomeController < ApplicationController
   
   def index
     @tour = Tour.all.limit(4)
-    @questions = Question.all.limit(8)
+    @faqs = Question.where('sort = ?', 'faq').all.limit(8)
+    @tutorials = Question.where('sort = ?', 'tutorial').all.limit(8)
   end
   
   def search
