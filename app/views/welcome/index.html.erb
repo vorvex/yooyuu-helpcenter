@@ -29,10 +29,34 @@
         <img src="a/yooyu-hilfe.png" width="235" height="96" alt=""/>
         <div class="suche-container-xl">
           <img src="/a/search.png" alt="Such-Icon" class="suche-icon-xl">
-          <form action="/search" class="suche-xl" async>
+          <form action="/search" class="suche-xl" id="suche-xl" autocomplete="off" >
             <input type="text" id="searchxl" name="q" placeholder="Suche">
             <input type="submit" style="display: none" value="Suche">
           </form>
+          <div class="search-preview"></div>
+          <script>
+            $('#searchxl').on('keyup', function(event){
+                event.preventDefault();
+                var input = $('#searchxl').val()
+                if($('#searchxl').val().length > 2){
+                  $.ajax({
+                          type: 'GET',
+                          url: '/quicksearch',
+                          data: $("#suche-xl").serialize(),
+                          error: function(){
+                            $('.search-preview').html('<a href="/search?q=' + input + '">Nach "' + input +'" suchen</a>');
+                          }	
+                  })
+                }
+            });
+            
+            $('#searchxl').focusout(function(event){
+                if($('a' + ':hover').length) {
+                    return;
+                };
+                $('.search-preview').html('');
+            });
+          </script>
         </div>
       </div>
       <div class="index-tutorial-container">

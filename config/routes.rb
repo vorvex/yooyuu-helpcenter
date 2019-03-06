@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   
   get 'ajax/search' => 'tour#searchajax'
   
+  get 'quicksearch' => 'welcome#quicksearch'
+  
   get ':path/:step' => 'tour#step'
   
 end

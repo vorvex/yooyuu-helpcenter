@@ -19,5 +19,13 @@ class WelcomeController < ApplicationController
       @questions = Question.where('lower(head) LIKE ? OR lower(body) LIKE ?', "%#{search}%", "%#{search}%")
   end
   
+  def quicksearch 
+    @search = params[:q].downcase
+    @questions = Question.where('lower(head) LIKE ? OR lower(body) LIKE ?', "%#{@search}%", "%#{@search}%").limit(5)
+    
+    respond_to do |format|
+      format.js { render partial: 'welcome/quicksearch' }
+    end
+  end
   
 end

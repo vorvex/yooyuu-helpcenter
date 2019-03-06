@@ -18,10 +18,10 @@
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "url": "<%= Rails.root %>",
+      "url": "https://<%= request.host %>",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "<%= Rails.root %>/search?q={search_term_string}",
+        "target": "https://<%= request.host %>/search?q={search_term_string}",
         "query-input": "required name=search_term_string"
       }
     }
@@ -103,12 +103,12 @@
               }
             });
           $('#search').focusout(function(event){
-            if($('.search-result' + ':hover').length) {
-                return;
-            }
-            $('.suche-container').toggleClass('active');
-            $('.search-result-container').fadeOut(250)
-          })
+              if($('.search-result' + ':hover').length) {
+                  return;
+              }
+              $('.suche-container').toggleClass('active');
+              $('.search-result-container').toggleClass('active');
+          });
       </script>
     </header>
     <div class="search-result-container"></div>
@@ -126,7 +126,7 @@
                   }	
                 });
         }
-      })
+      });
       
       $('#suche').on('submit', function(event){
         event.preventDefault();

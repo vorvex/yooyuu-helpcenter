@@ -1,0 +1,4 @@
+<% @questions.each do |search| %>
+  <a href="/question/<%= search.id %>"><%= highlight(search.head, @search, highlighter: '<strong>\1</strong>') %></a>
+<% end %>
+  <a href='/search?q=<%= @search %>' %><strong>Nach '<%= @search %>' suchen</strong></a>

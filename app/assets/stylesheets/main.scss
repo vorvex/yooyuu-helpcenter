@@ -225,6 +225,7 @@ header {
 		padding: 8px;
 		background-color: $color-header;
 		transition: 500ms ease;
+    -webkit-transition: 500ms ease;
 	}
 	
 	.suche-container.hidden-desktop {
@@ -243,10 +244,19 @@ header {
 /* Such Resultate */
 
 .search-result-container {
+  display: none;
 	position: fixed;
 	top: 80px;
 	width: 100vw;
 	z-index: 99;
+  opacity: 0;
+  -webkit-transition: opacity 250ms ease; /* Safari */
+  transition: opacity 250ms ease;
+}
+
+.search-result-container.active {
+  display: block;
+  opacity: 1;
 }
 
 @media screen and (max-width: 600px) {
@@ -293,7 +303,6 @@ header {
 	margin: 0;
 	text-decoration: none !important;
 }
-
 
 /* Main-Container */
 
@@ -622,6 +631,7 @@ footer > .btn {
   opacity: 0.4;
 	cursor: pointer;
 	transition: background .5s, opacity .5s;
+  -webkit-transition: background .5s, opacity .5s;
   list-style: none;
 }
 
@@ -638,6 +648,7 @@ footer > .btn {
   width: 100%;
   height: 100%;
   transition: background .5s, opacity .5s;
+  -webkit-transition: background .5s, opacity .5s;
 }
 
 .slide .arrow .arrow-left,
@@ -651,6 +662,7 @@ footer > .btn {
   cursor: pointer;
   opacity: 0.5;
 	transition: background .5s, opacity .5s;
+  -webkit-transition: background .5s, opacity .5s;
 }
 
 .slide .arrow  .arrow-left:hover,
