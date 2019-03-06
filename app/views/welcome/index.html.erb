@@ -137,6 +137,16 @@
         }
         });
       
+          $('.index-container-inner').slick({
+            infinite: true,
+            slidesToScroll: 1,
+            slidesToShow: 1,
+            variableWidth: true,
+            speed: 300,
+            slidesToShow: 1,
+            lazyLoad: 'ondemand'
+          });
+      
       $('.suche-icon').on('click', function(){
               if(Modernizr.mq('only screen and (max-width: 768px)')){
                 $('.suche-container').toggleClass('active');
