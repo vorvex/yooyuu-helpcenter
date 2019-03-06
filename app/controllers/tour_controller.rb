@@ -66,7 +66,7 @@
     
     if Step.last.id < @stepcount
       @step_table.select(formula: "step_id > #{Step.last.id}").each do |record|
-        Step.create(step: record[:step], tour_id: record[:tour_id].first, head: record[:head], body: record[:body], type: record[:type], video_url: record[:video_url], est_time: record[:est_time], image_url: record[:image].first[:url])
+        Step.create(step: record[:step], tour_id: record[:tour_id].first, head: record[:head], body: record[:body], sort: record[:type], video_url: record[:video_url], est_time: record[:est_time], image_url: record[:image].first[:url])
       end
     end  
     
@@ -85,7 +85,7 @@
     
     if lastquestion < @questioncount
       @question_table.select(formula: "question_id > #{lastquestion}").each do |record|
-        Question.create(head: record[:head], body: record[:body], type: record[:type], video_url: record[:video_url], image_url: "", thumbnail_url: "")
+        Question.create(head: record[:head], body: record[:body], sort: record[:type], video_url: record[:video_url], image_url: "", thumbnail_url: "")
       end
     end
     
@@ -112,7 +112,7 @@
         step.tour_id = record[:tour_id].first
         step.head = record[:head]
         step.body = record[:body]
-        step.type = record[:type]
+        step.sort = record[:type]
         step.video_url = record[:video_url]
         step.est_time = record[:est_time]
         if record[:image].first.empty?
@@ -134,7 +134,7 @@
       if record != nil && record[:status] == "Fertig"
         question.head = record[:head]
         question.body = record[:body]
-        question.type = record[:type]
+        question.sort = record[:type]
         question.video_url = record[:video_url]
         if record[:image].first.empty?
           question.image_url = ""

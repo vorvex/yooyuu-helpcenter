@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_05_102155) do
+ActiveRecord::Schema.define(version: 2019_03_06_125823) do
 
   create_table "questions", force: :cascade do |t|
     t.string "head"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2019_03_05_102155) do
     t.string "image_url"
     t.string "thumbnail_url"
     t.string "video_url"
-    t.string "type"
+    t.string "sort"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2019_03_05_102155) do
     t.integer "tour_id"
     t.string "head"
     t.string "body"
-    t.string "type"
+    t.string "sort"
     t.string "video_url"
     t.string "image_url"
     t.integer "est_time"
