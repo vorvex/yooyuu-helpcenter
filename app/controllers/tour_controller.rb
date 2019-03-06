@@ -24,14 +24,14 @@
   end
   
   def searchajax
-    search = params[:q].downcase
-    if search != ""
-      @search = Question.where('lower(head) LIKE ? OR lower(body) LIKE ?', "%#{search}%", "%#{search}%").limit(5)
+    @search = params[:q].downcase
+    if @search != ""
+      @questions = Question.where('lower(head) LIKE ? OR lower(body) LIKE ?', "%#{@search}%", "%#{@search}%").limit(5)
     else
-      @search = Question.none
+      @questions = Question.none
     end
     respond_to do |format|
-      format.js { render partial: 'tour/search' }
+      format.js { render partial: 'tour/quicksearch' }
     end
   end
   

@@ -304,6 +304,47 @@ header {
 	text-decoration: none !important;
 }
 
+// QuickSearch
+
+.search-preview-ajax {
+	position: fixed;
+	top: 80px;
+  width:100vw;
+	z-index: 99;
+  -webkit-transition: opacity 250ms ease; /* Safari */
+  transition: opacity 250ms ease; }
+
+.search-preview-ajax a {
+  	display: block;
+  	font-size: 1rem;
+    width: calc(100% - 40px);
+    max-width: 600px;
+    margin: 0 auto;
+	  padding: 10px 20px;
+  	border-bottom: solid thin rgba(0, 0, 0, 0.2); }
+
+.search-preview-ajax a:last-child {
+	border-bottom: none;
+}
+
+.search-preview-ajax.active a {
+  background: #FFFFFF;
+}
+
+@media screen and (max-width: 600px) {
+  .search-preview-ajax.active {
+    top: 70px;
+    padding-top: 10px;
+    height: calc(100vh - 80px);
+    z-index: 100;
+    background-color: rgba(255,255,255,0.9);
+  }
+  
+  .search-preview-ajax.active a {
+    background: transparent;
+  }
+}
+
 /* Main-Container */
 
 .main-container {

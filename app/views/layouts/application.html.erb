@@ -84,9 +84,11 @@
           <input type="submit" style="display: none" value="Suche">
         </form>
       </div>
-      <script>
-        
-            $('.suche-icon').on('click', function(){
+    </header>
+    <div class="search-preview-ajax"></div>
+    <%= yield %>
+    <script>
+      $('.suche-icon').on('click', function(){
               if(Modernizr.mq('only screen and (max-width: 768px)')){
                 $('.suche-container').toggleClass('active');
                 $('#search').focus();
@@ -103,20 +105,18 @@
               }
             });
           $('#search').focusout(function(event){
-              if($('.search-result' + ':hover').length) {
+              if($('a' + ':hover').length) {
                   return;
               }
-              $('.suche-container').toggleClass('active');
-              $('.search-result-container').toggleClass('active');
+              $('.suche-container').removeClass('active');
+              $('.search-preview-ajax').html('');
+              $('.search-preview-ajax').removeClass('active');
+              
           });
-      </script>
-    </header>
-    <div class="search-result-container"></div>
-    <%= yield %>
-    <script>
+      
       $('#suche').on('keyup', function(event){
         event.preventDefault();
-        if($('#search').val().length > 2){
+        if($('#search').val().length > 0){
           $.ajax({
                   type: 'GET',
                   url: '/ajax/search',
