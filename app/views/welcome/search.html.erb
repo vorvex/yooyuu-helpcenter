@@ -9,21 +9,8 @@
           <input type="submit" style="display: none" value="Suche">
         </form>
       </div>
-      <script>
-        
-            $('.suche-icon').on('click', function(){
-              if(Modernizr.mq('only screen and (max-width: 768px)')){
-                $('.suche-container').toggleClass('active');
-                $('#search').focus();
-              }
-            });
-        
-          $('#search').focusout(function(event){
-            $('.suche-container').toggleClass('active');
-          })
-        
-      </script>
     </header>
+    <div class="search-preview-ajax"></div>
     <div class="index">
       <div class="search-top">
         <img src="a/yooyu-hilfe.png" width="235" height="96" alt=""/>
