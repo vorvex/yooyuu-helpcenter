@@ -9,20 +9,6 @@
           <input type="submit" style="display: none" value="Suche">
         </form>
       </div>
-      <script>
-        
-            $('.suche-icon').on('click', function(){
-              if(Modernizr.mq('only screen and (max-width: 768px)')){
-                $('.suche-container').toggleClass('active');
-                $('#search').focus();
-              }
-            });
-        
-          $('#search').focusout(function(event){
-            $('.suche-container').toggleClass('active');
-          })
-        
-      </script>
     </header>
     <div class="index">
       <div class="search-top">
@@ -127,4 +113,59 @@
             console.log('error loading ' + element.data('src'));
         }
         });
+    </script>
+<script>
+      $('.suche-icon').on('click', function(){
+              if(Modernizr.mq('only screen and (max-width: 768px)')){
+                $('.suche-container').toggleClass('active');
+                $('#search').focus();
+              }
+              if($('#search').val().length > 0){
+                $.ajax({
+                  type: 'GET',
+                  url: '/ajax/search',
+                  data: $("#suche").serialize(),
+                  error: function(){
+                    alert('Es ist ein Fehler aufgetretten! Bitte aktualisieren Sie die Seite und versuchen Sie es erneut.');
+                  }	
+							  });
+              }
+            });
+          $('#search').focusout(function(event){
+              if($('a' + ':hover').length) {
+                  return;
+              }
+              $('.suche-container').removeClass('active');
+              $('.search-preview-ajax').html('');
+              $('.search-preview-ajax').removeClass('active');
+              
+          });
+      
+      $('#suche').on('keyup', function(event){
+        event.preventDefault();
+        if($('#search').val().length > 0){
+          $.ajax({
+                  type: 'GET',
+                  url: '/ajax/search',
+                  data: $("#suche").serialize(),
+                  error: function(){
+                    alert('Es ist ein Fehler aufgetretten! Bitte aktualisieren Sie die Seite und versuchen Sie es erneut.');
+                  }	
+                });
+        }
+      });
+      
+      $('#suche').on('submit', function(event){
+        event.preventDefault();
+        
+        $.ajax({
+							  type: 'GET',
+							  url: '/ajax/search',
+							  data: $("#suche").serialize(),
+							  error: function(){
+								  alert('Es ist ein Fehler aufgetretten! Bitte aktualisieren Sie die Seite und versuchen Sie es erneut.');
+							  }	
+				});
+        
+      })
     </script>
