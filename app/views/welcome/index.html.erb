@@ -51,7 +51,7 @@
       <div class="index-tutorial-container">
         <div class="index-tutorial-container-header">
           <h3>Tutorials</h3>
-          <a href="">Alle anzeigen</a>
+          <a href="/search?q=tutorials">Alle anzeigen</a>
           </div>
           <div class="index-container-inner">
             <% @tour.each do |tour| %>
@@ -68,7 +68,7 @@
         </div>
         <div class="index-tutorial-container-header">
           <h3>Fragen & Antworten</h3>
-          <a href="">Alle anzeigen</a>
+          <a href="/search?q=faq">Alle anzeigen</a>
         </div>
         <div class="index-container-inner">
             <% @faqs.each do |question| %>
@@ -85,7 +85,7 @@
         </div>
         <div class="index-tutorial-container-header">
           <h3>Funktionen</h3>
-          <a href="">Alle anzeigen</a>
+          <a href="/search?q=funktionen">Alle anzeigen</a>
         </div>
         <div class="index-container-inner">
             <% @tutorials.each do |question| %>
@@ -137,7 +137,7 @@
         }
         });
       
-          $('.index-container-inner').slick({
+        $('.index-container-inner').slick({
             infinite: true,
             slidesToScroll: 1,
             slidesToShow: 1,

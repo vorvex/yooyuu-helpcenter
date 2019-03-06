@@ -76,69 +76,66 @@
       </div>
     </div>
     <script>
-        $('.preview').mouseover(function(){
-          $(this).children().toggleClass('hover');
+      $('.lazy').Lazy({
+        // your configuration goes here
+        scrollDirection: 'vertical',
+        effect: 'fadeIn',
+        visibleOnly: true,
+        onError: function(element) {
+            console.log('error loading ' + element.data('src'));
+        }
         });
-        $('.preview').mouseout(function(){
-          $(this).children().toggleClass('hover');
-        });
-
-        $(window).scroll(function(){
-          var scroll = $(this).scrollTop();
-          var scale = scroll/1000 + 1;
-          var opacity = 1 - scroll/350;
-          $('.search-top').css('transform', 'scale(' + scale + ')');
-          $('.search-top').css('opacity', opacity );
-          if(scroll > 300) {
-            $('.suche-container').removeClass('hidden-desktop');
-            $('#searchxl').focusout();
-          } else {
-            $('.suche-container').addClass('hidden-desktop');
-            $('.search-preview-ajax').html('');
-            $('.search-preview-ajax').removeClass('active');
-          };
-        });
-
-        $('.suche-icon').on('click', function(){
-                if(Modernizr.mq('only screen and (max-width: 768px)')){
-                  $('.suche-container').toggleClass('active');
-                  $('#search').focus();
-                }
-                if($('#search').val().length > 0){
-                  $.ajax({
-                    type: 'GET',
-                    url: '/ajax/search',
-                    data: $("#suche").serialize(),
-                    error: function(){
-                      alert('Es ist ein Fehler aufgetretten! Bitte aktualisieren Sie die Seite und versuchen Sie es erneut.');
-                    }	
-                  });
-                }
-              });
-            $('#search').focusout(function(event){
-                if($('a' + ':hover').length) {
-                    return;
-                }
-                $('.suche-container').removeClass('active');
-                $('.search-preview-ajax').html('');
-                $('.search-preview-ajax').removeClass('active');
-
+      
+        $('.index-container-inner').slick({
+            infinite: true,
+            slidesToScroll: 1,
+            slidesToShow: 1,
+            variableWidth: true,
+            speed: 300,
+            slidesToShow: 1,
+            lazyLoad: 'progressive'
+          });
+      
+      $('.suche-icon').on('click', function(){
+              if(Modernizr.mq('only screen and (max-width: 768px)')){
+                $('.suche-container').toggleClass('active');
+                $('#search').focus();
+              }
+              if($('#search').val().length > 0){
+                $.ajax({
+                  type: 'GET',
+                  url: '/ajax/search',
+                  data: $("#suche").serialize(),
+                  error: function(){
+                    alert('Es ist ein Fehler aufgetretten! Bitte aktualisieren Sie die Seite und versuchen Sie es erneut.');
+                  }	
+							  });
+              }
             });
-
-        $('#search').on('keyup', function(event){
-          event.preventDefault();
-          var input = $('#search').val()
-          if($('#search').val().length > 0){
-            $.ajax({
-                    type: 'GET',
-                    url: '/ajax/search',
-                    data: $("#suche").serialize(),
-                    error: function(){
-                      $('.search-preview-ajax').html('<a href="/search?q=' + input + '">Nach "' + input +'" suchen</a>');
-                      $('.search-preview-ajax').addClass('active');
-                    }	
-                  });
-            $('#searchxl').val(input);
-          }
-        });
+          $('#search').focusout(function(event){
+              if($('a' + ':hover').length) {
+                  return;
+              }
+              $('.suche-container').removeClass('active');
+              $('.search-preview-ajax').html('');
+              $('.search-preview-ajax').removeClass('active');
+              
+          });
+      
+      $('#search').on('keyup', function(event){
+        event.preventDefault();
+        var input = $('#search').val()
+        if($('#search').val().length > 0){
+          $.ajax({
+                  type: 'GET',
+                  url: '/ajax/search',
+                  data: $("#suche").serialize(),
+                  error: function(){
+                    $('.search-preview-ajax').html('<a href="/search?q=' + input + '">Nach "' + input +'" suchen</a>');
+								    $('.search-preview-ajax').addClass('active');
+                  }	
+                });
+        };
+        $('#searchxl').val(input);
+      });
     </script>

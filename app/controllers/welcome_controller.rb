@@ -9,6 +9,17 @@ class WelcomeController < ApplicationController
   
   def search
     search = params[:q].downcase
+      
+    if search == "tutorials"
+      @tour = Tour.all
+      @questions = Question.none
+    elsif search == "faq"
+      @questions = Question.where('sort = ?', 'faq')
+      @tour = Tour.none
+    elsif  search == "funktionen"
+      @questions = Question.where('sort = ?', 'tutorial')
+      @tour = Tour.none
+    else
       @tour = Array.new()
       Tour.where('lower(name) LIKE ? OR lower(description) LIKE ?', "%#{search}%", "%#{search}%").each do |tour|
         @tour << tour
@@ -18,6 +29,7 @@ class WelcomeController < ApplicationController
       end
       @tour = @tour.uniq
       @questions = Question.where('lower(head) LIKE ? OR lower(body) LIKE ?', "%#{search}%", "%#{search}%")
+    end 
   end
   
   def quicksearch 
