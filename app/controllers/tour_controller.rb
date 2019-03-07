@@ -69,17 +69,17 @@
     @tourcount = @tour_table.all(:sort => ["tour_id", :desc]).first[:tour_id]
     @questioncount = @question_table.all(:sort => ["question_id", :desc]).first[:question_id]
     
-    if Step.last.id < @stepcount
-      @step_table.select(formula: "step_id > #{Step.last.id}").each do |record|
-        Step.create(step: record[:step], tour_id: record[:tour_id].first, head: record[:head], body: record[:body], sort: record[:type], video_url: record[:video_url], est_time: record[:est_time], secondary_button_link: record[:button_link], secondary_button_text: record[:button_text])
-      end
-    end  
-    
     if Tour.last.id < @tourcount
       @tour_table.select(formula: "step_id > #{Tour.last.id}").each do |record|
         Tour.create(name: record[:name], description: record[:description], image_url: record[:image].first[:url], path: record[:path], final_path: record[:final_path])
       end
     end 
+    
+    if Step.last.id < @stepcount
+      @step_table.select(formula: "step_id > #{Step.last.id}").each do |record|
+        Step.create(step: record[:step], tour_id: record[:tour_id].first, head: record[:head], body: record[:body], sort: record[:type], video_url: record[:video_url], est_time: record[:est_time], secondary_button_link: record[:button_link], secondary_button_text: record[:button_text])
+      end
+    end  
     
     if Question.last.nil? 
       lastquestion = 0
