@@ -1,9 +1,8 @@
-
 <div class="main-container">
-  <aside>
+		<aside>
 			<div class="aside-header">
 				<h4>Übersicht</h4>
-				<span><%= @time_done %>/<%= @tour.est_time %>min</span>				
+				<span>Dauer: <%= @tour.est_time %>min</span>				
 				<svg width="22px" height="12px" class="aside-handler" id="aside-handler" viewBox="0 0 22 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 					<g stroke="none" stroke-width="2" fill="none" fill-rule="evenodd">
 						<g transform="translate(-287.000000, -109.000000)" stroke="#3B3B3B">
@@ -21,15 +20,15 @@
 			</div>
 			<div class="aside-body">
 				<ul class="aside-list">
-          <li class="done"><a href="/tour/<%= @tour.path %>" style="color: #000000;" >Willkommen</a></li>
-          <% @tour.steps.order("step").each do |step| %>  
-            <% unless step.step == 0 %>
-            <li <% if step == @step %>class="active"<% elsif step.step < @step.step %>class="done"<% end %>><a href="/tour/<%= @tour.path %>/<%= step.step %>" style="color: #000000;" >Schritt <%= step.step %>: <%= step.head %></a></li>
-            <% end %>
+					<li class="active">Willkommen</li>
+          <% @tour.steps.order('step').each do |step| %>
+          <% unless step.step == 0 %>
+					<li><a href="/tour/<%= @tour.path %>/<%= step.step %>" style="color: #000000;">Schritt <%= step.step %>: <%= step.head %></a></li>
+          <% end %>
           <% end %>
 				</ul>
-        <% unless @step.step == 1 %>
-          <a href="/tour/<%= @tour.path %>/<%= @step.step - 1 %>" class="btn secondary hidden-desktop">Vorheriger Schritt</a>
+				<% if @step.secondary_button_link != "" && !@step.secondary_button_link.nil? %>
+          <a href="<%= @step.secondary_button_link %>" target="_blank" class="btn secondary"><%= @step.secondary_button_text %></a>
         <% end %>
 			</div>
 		</aside>
@@ -59,23 +58,17 @@
       </script>
 			<article>
 				<h1><%= @step.head %></h1>
-				<p><%= @step.body %></p>
+				<%= @step.body.html_safe %>
 			</article>
 		</main>
 	</div>
 	<footer>
-    <% if @step.step > 1 %>
-		  <a href="/tour/<%= @tour.path %>/<%= @step.step - 1 %>" class="btn secondary hidden-mobile">Vorheriger Schritt</a>
-    <% else %>
-      <a href="/tour/<%= @tour.path %>" class="btn secondary hidden-mobile">Zurück</a>
+    <% if @step.secondary_button_link != "" && !@step.secondary_button_link.nil? %>
+		  <a href="<%= @step.secondary_button_link %>" target="_blank" class="btn secondary hidden-mobile"><%= @step.secondary_button_text %></a>
     <% end %>
-    <% if @step.step == @tour.steps.count %>
-      <a href="/tour/<%= @tour.final_path %>" class="btn">Tutorial abschließen</a>
-    <% else %>
-		  <a href="/tour/<%= @tour.path %>/<%= @step.step + 1 %>" class="btn">Weiter</a>
-    <% end %>
+		<a href="/tour/<%= @tour.path %>/1" class="btn">Tour beginnen</a>
 	</footer>
-    <script>
+  <script>
       $('.image-slider').Lazy({
         // your configuration goes here
         scrollDirection: 'vertical',
@@ -83,6 +76,9 @@
         visibleOnly: true,
         onError: function(element) {
             console.log('error loading ' + element.data('src'));
+        },
+        onFinishedAll: function() {
+            $('.article-img').slick({adaptiveHeight: true});
         }});
-      $('.article-img').slick({adaptiveHeight: true});
+
     </script>

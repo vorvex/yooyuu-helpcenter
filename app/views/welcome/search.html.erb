@@ -52,7 +52,7 @@
           <h3><%= @tour.length + @questions.length %> Suchergebnisse</h3>
           </div>
           <div class="index-container-inner"><% @tour.each do |tour| %>
-              <a href="/<%= tour.path %>" class="preview">
+              <a href="tour/<%= tour.path %>" class="preview">
                 <div class="preview-inner">
                   <div>
                     <h4><%= tour.name %></h4><span>Dauer: <%= tour.est_time %>min</span>

@@ -55,7 +55,7 @@
           </div>
           <div class="index-container-inner">
             <% @tour.each do |tour| %>
-              <a href="/<%= tour.path %>" class="preview">
+              <a href="tour/<%= tour.path %>" class="preview">
                 <div class="preview-inner">
                   <div>
                     <h4><%= tour.name %></h4><span>Dauer: <%= tour.est_time %>min</span>
@@ -138,6 +138,7 @@
         });
       
         $('.index-container-inner').slick({
+            dots: true,
             infinite: true,
             slidesToScroll: 1,
             slidesToShow: 1,

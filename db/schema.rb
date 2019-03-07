@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_06_125823) do
+ActiveRecord::Schema.define(version: 2019_03_07_111611) do
 
   create_table "questions", force: :cascade do |t|
     t.string "head"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 2019_03_06_125823) do
     t.integer "est_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "secondary_button_link"
+    t.string "secondary_button_text"
   end
 
   create_table "tours", force: :cascade do |t|

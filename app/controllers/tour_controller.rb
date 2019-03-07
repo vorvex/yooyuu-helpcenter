@@ -13,11 +13,6 @@
     @image = "/a/willkommen-angestellter.jpg"
     @description = ""
   end
-  
-  def index 
-    @tour = Tour.all.limit(4);
-    @questions = Questions.all.limit(8);
-  end
     
   def testdaten
     TestdatenMailer.with(org: params[:org]).testdaten.deliver_now
@@ -50,6 +45,16 @@
     @description = @step.body
     
   end
+    
+  def start_tour
+    @tour = Tour.find_by_path(params[:path])
+    @step = @tour.steps.find_by_step(0)
+    @images = @step.image_url.split(',')
+    
+    @title = "YooYuu | " + @tour.name
+    @image = "/a/willkommen.jpg"
+    @description = @tour.description
+  end
   
   def update
     @client = Airtable::Client.new("keykRKN6ZrrNdvLzT")
@@ -66,7 +71,7 @@
     
     if Step.last.id < @stepcount
       @step_table.select(formula: "step_id > #{Step.last.id}").each do |record|
-        Step.create(step: record[:step], tour_id: record[:tour_id].first, head: record[:head], body: record[:body], sort: record[:type], video_url: record[:video_url], est_time: record[:est_time], image_url: record[:image].first[:url])
+        Step.create(step: record[:step], tour_id: record[:tour_id].first, head: record[:head], body: record[:body], sort: record[:type], video_url: record[:video_url], est_time: record[:est_time], secondary_button_link: record[:button_link], secondary_button_text: record[:button_text])
       end
     end  
     
@@ -113,6 +118,8 @@
         step.head = record[:head]
         step.body = record[:body]
         step.sort = record[:type]
+        step.secondary_button_link = record[:button_link]
+        step.secondary_button_text = record[:button_text]
         step.video_url = record[:video_url]
         step.est_time = record[:est_time]
         if record[:image].first.empty?
