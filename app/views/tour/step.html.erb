@@ -59,7 +59,7 @@
       </script>
 			<article>
 				<h1><%= @step.head %></h1>
-				<p><%= @step.body %></p>
+				<%= @step.body.html_safe %>
 			</article>
 		</main>
 	</div>
