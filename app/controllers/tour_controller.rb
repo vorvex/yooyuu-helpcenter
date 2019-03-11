@@ -52,17 +52,19 @@
     @images = @step.image_url.split(',')
     
     @title = "YooYuu | " + @tour.name
-    @image = "/a/willkommen.jpg"
+    @image = "@images.first"
     @description = @tour.description
   end
   
   def fehlerbehebung
-    
+    @title = "YooYuu | Fehlerbehebung"
+    @image = "/a/willkommen.jpg"
+    @description = "Sie haben einen Fehler oder ein Problem in der App oder der Web-App gefunden? Schicken Sie uns bitte eine Anfrage über das Formular und befolgen Sie die nachfolgenden Schritte." 
   end
     
   def fehlerbehebung_form
-      
-  end
+    @title = "YooYuu | Fehlerbehebung"
+  end  
     
   def update
     @client = Airtable::Client.new("keykRKN6ZrrNdvLzT")
