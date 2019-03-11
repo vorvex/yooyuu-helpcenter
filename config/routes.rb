@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   get 'update' => 'tour#update'
   
   get 'search' => 'welcome#search'
+
+  get 'fehlerbehebung' => 'tour#fehlerbehebung'
+  
+  get 'fehlerbehebung/formular' => 'tour#fehlerbehebung_form'
   
   get 'ajax/search' => 'tour#searchajax'
   

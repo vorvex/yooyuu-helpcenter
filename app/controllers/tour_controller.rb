@@ -56,6 +56,14 @@
     @description = @tour.description
   end
   
+  def fehlerbehebung
+    
+  end
+    
+  def fehlerbehebung_form
+      
+  end
+    
   def update
     @client = Airtable::Client.new("keykRKN6ZrrNdvLzT")
     @tour_table = @client.table("appihv8aKj9Q7Qm7B", "tour")
