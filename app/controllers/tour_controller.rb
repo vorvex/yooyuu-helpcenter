@@ -64,11 +64,20 @@
     
   def fehlerbehebung_form
     @title = "YooYuu | Fehlerbehebung"
-    @fehlermeldung 
   end  
     
   def create_fehlermeldung
-    @fehlermeldung 
+    TestdatenMailer.with( betreff: params[:betreff],
+                          attachment: params[:attachment],
+                          nachricht: params[:nachricht],
+                          organization: params[:organization],
+                          user_name: params[:user_name],
+                          op_system: params[:op_system],
+                          email: params[:email]
+                  ).fehlermeldung.deliver_now
+    
+    redirect_to "/"
+    
   end
     
   def update
