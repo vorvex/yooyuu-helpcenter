@@ -64,7 +64,12 @@
     
   def fehlerbehebung_form
     @title = "YooYuu | Fehlerbehebung"
+    @fehlermeldung 
   end  
+    
+  def create_fehlermeldung
+    @fehlermeldung 
+  end
     
   def update
     @client = Airtable::Client.new("keykRKN6ZrrNdvLzT")

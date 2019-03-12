@@ -1,7 +1,60 @@
 <div class="main-container">
   <main>
-			<article style="width: 100%; padding: 0px;">
-				<script src="https://static.airtable.com/js/embed/embed_snippet_v1.js"></script><iframe class="airtable-embed airtable-dynamic-height" src="https://airtable.com/embed/shrNepbZwwHuFJ2Cz?backgroundColor=gray" frameborder="0" onmousewheel="" width="100%" height="1403" style="background: transparent; border: 1px solid #ccc;"></iframe>
+      <div class="article-img">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 25 25" id="close-fs">
+				  <g fill="none" fill-rule="evenodd" stroke="#FFF" stroke-linecap="round" stroke-width="2" transform="translate(1 1)">
+					<path d="M0.522727273,0.522727273 L22.4772727,22.4772727"/>
+					<path d="M0.522727273,0.522727273 L22.4772727,22.4772727" transform="matrix(-1 0 0 1 23 0)"/>
+				  </g>
+				</svg>
+				<img src="/a/willkommen.jpg" alt="" width="100%">
+			</div>
+			<script>
+				$('.article-img > img').on('click', function(){
+					$('.article-img').toggleClass('fullscreen');
+				})
+				
+				$('#close-fs').on('click', function(){
+					$('.article-img').toggleClass('fullscreen');
+				})
+				
+			</script>
+			<article>
+				<h1>Fehlerbehebung</h1>
+        <%= form_tag(create_fehlermeldung_path) do |f| %>
+          <fieldset>
+            <label for="betreff">Betreff</label>
+            <input name="betreff", placeholder="Betreff" />
+          </fieldset>
+          <fieldset>
+            <label for="attachment">Anhänge</label>
+            <input id="attachment" name="attachment" type="file" />
+          </fieldset>
+          <fieldset>
+            <label for="nachricht">Nachricht</label>
+            <textarea name="nachricht"></textarea>
+          </fieldset>
+          <fieldset>
+            <label for="organization">Organisation</label>
+            <input name="organization" placeholder="Organisation" />
+          </fieldset>
+          <fieldset>
+            <label for="user_name">Benutzername</label>
+            <input name="user_name" placeholder="Benutzername" />
+          </fieldset>
+          <fieldset>
+            <label for="op_system">Verwendetes Betriebssystem</label>
+            <select id="op_system" name="op_system">
+              <option value="iOS">iOS (iPhone, iPad)</option>
+              <option value="Android">Android</option>
+              <option value="Web-App">Web-App</option>
+            </select>
+          </fieldset>
+          <fieldset>
+            <label for="email">Arbeitsemail</label>
+            <input name="email" placeholder="beispiel@yooy.de" />
+          </fieldset>
+        <% end %>
 			</article>
 		</main>
 </div>

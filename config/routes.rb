@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   
   get 'fehlerbehebung/formular' => 'tour#fehlerbehebung_form'
   
+  post 'fehlerbehebung/formular' => 'tour#create_fehlermeldung', as: :create_fehlermeldung
+  
   get 'ajax/search' => 'tour#searchajax'
   
   get 'quicksearch' => 'welcome#quicksearch'
