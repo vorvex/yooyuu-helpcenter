@@ -938,7 +938,7 @@
 			</script>
 			<article>
 				<h1>Fehlerbehebung</h1>
-        <%= form_tag(create_fehlermeldung_path, class: 'form-container') do |f| %>
+        <%= form_tag(create_fehlermeldung_path, class: 'form-container', multipart: true) do |f| %>
           <div class="form-group">
             <label for="betreff">Betreff</label>
             <input name="betreff" class="form-control" placeholder="Betreff" />
