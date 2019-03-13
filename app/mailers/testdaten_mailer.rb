@@ -16,7 +16,7 @@ class TestdatenMailer < ApplicationMailer
     @op_system = params[:op_system]
     @email = params[:email]
     attachments[@attachment.original_filename] = File.read(params[:attachment].tempfile)
-    mail(to: 'l.dahmer@yooyuu.de', 
+    mail(to: 'dahmer@yooyuu.de, l.dahmer@yooyuu.de', 
          subject: 'Fehlermeldung')
   end
   
