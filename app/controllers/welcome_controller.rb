@@ -2,7 +2,7 @@ class WelcomeController < ApplicationController
   layout 'welcome'
   
   def index
-    @tour = Tour.all.limit(4)
+    @tour = Tour.all
     @faqs = Question.where('sort = ?', 'faq').all.limit(8)
     @tutorials = Question.where('sort = ?', 'tutorial').all.limit(8)
   end

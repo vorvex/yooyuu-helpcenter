@@ -70,7 +70,7 @@ h4 {
 	line-height: 1.625rem;
 }
 
-p {
+p, li {
 	font-family: fira-sans, sans-serif;
 	font-weight: 400;
 	color: $color-font;
@@ -85,6 +85,10 @@ a {
 
 a:hover {
 	text-decoration: underline;
+}
+
+ul {
+  padding-left: 14px;
 }
 
 /* Button */
