@@ -70,7 +70,7 @@
           <h3>Fragen & Antworten</h3>
           <a href="/search?q=faq">Alle anzeigen</a>
         </div>
-        <div class="index-container-inner">
+        <div class="index-container-inner slickxyz">
             <% @faqs.each do |question| %>
             <a href="/question/<%= question.id %>" class="preview">
               <div class="preview-inner qa">
@@ -87,7 +87,7 @@
           <h3>Funktionen</h3>
           <a href="/search?q=funktionen">Alle anzeigen</a>
         </div>
-        <div class="index-container-inner">
+        <div class="index-container-inner slickxyz" >
             <% @tutorials.each do |question| %>
             <a href="/question/<%= question.id %>" class="preview">
               <div class="preview-inner qa">
@@ -137,7 +137,7 @@
         }
         });
       
-        $('.index-container-inner').slick({
+        $('.slickxyz').slick({
             dots: true,
             slidesToScroll: 1,
             slidesToShow: 1,
