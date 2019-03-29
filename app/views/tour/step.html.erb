@@ -70,7 +70,7 @@
       <a href="/tour/<%= @tour.path %>" class="btn secondary hidden-mobile">Zurück</a>
     <% end %>
     <% if @step.step == @tour.steps.count - 1 %>
-      <a href="/tour/<%= @tour.final_path %>" class="btn">Tutorial abschließen</a>
+      <a href="<%= @tour.final_path %>" class="btn">Tutorial abschließen</a>
     <% else %>
 		  <a href="/tour/<%= @tour.path %>/<%= @step.step + 1 %>" class="btn">Weiter</a>
     <% end %>
