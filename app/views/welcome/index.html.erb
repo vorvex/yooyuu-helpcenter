@@ -53,7 +53,7 @@
           <h3>Tutorials</h3>
           <a href="/search?q=tutorials">Alle anzeigen</a>
           </div>
-          <div class="index-container-inner slickxyz2" >
+          <div class="index-container-inner slickxyz" >
             <% @tour.each do |tour| %>
               <a href="tour/<%= tour.path %>" class="preview">
                 <div class="preview-inner">
@@ -144,14 +144,8 @@
             variableWidth: true,
             speed: 300,
             slidesToShow: 1,
-            lazyLoad: 'progressive'
-          });
-      
-      $('.slickxyz2').slick({
-            dots: true,
-            slidesToScroll: 1,
-            slidesToShow: 1,
-            variableWidth: true,
+            lazyLoad: 'progressive',
+            infinite: false
           });
       
       $('.suche-icon').on('click', function(){
