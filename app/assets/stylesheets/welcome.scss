@@ -44,6 +44,7 @@ $color-font: #3B3B3B;
 /* Suche  XL*/
 .suche-container-xl {
 	display: flex;
+  position: relative;
 	align-items: center;
 	width: 40vw;
 	min-width: 500px;
@@ -241,8 +242,8 @@ $color-font: #3B3B3B;
 // QuickSearch
 
 .search-preview {
-  position: fixed;
-  top: 185px;
+  position: absolute;
+  top: 52px;
   width: 40vw;
   margin: 0px -20px;
   min-width: 540px;
