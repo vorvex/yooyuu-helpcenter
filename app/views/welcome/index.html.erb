@@ -53,7 +53,7 @@
           <h3>Tutorials</h3>
           <a href="/search?q=tutorials">Alle anzeigen</a>
           </div>
-          <div class="index-container-inner">
+          <div class="index-container-inner" style="display: flex;">
             <% @tour.each do |tour| %>
               <a href="tour/<%= tour.path %>" class="preview">
                 <div class="preview-inner">
