@@ -35,6 +35,8 @@ $color-font: #3B3B3B;
 	flex-direction: column;
 	align-items: center;
 	margin-bottom: 20vh;
+  position: relative;
+  z-index: 1000;
 }
 
 .search-top > img {
